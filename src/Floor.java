@@ -14,7 +14,7 @@ public class Floor {
 			System.out.println(idNr);
 		}
 		for (int i = 1; i <= mcycleParkingSpots; i++) {
-			parkingSpots.add(idNr++, ParkingSpotTypes.MOTORCYCLE.toString(), false);
+			parkingSpots.add(new ParkingSpot(idNr++, ParkingSpotTypes.MOTORCYCLE.toString(), false));
 			System.out.println(idNr);
 		}
 	}
@@ -22,8 +22,8 @@ public class Floor {
 	public List<ParkingSpot> getFreeParkingSpots(String type) {
 		List<ParkingSpot> freeSpots = new ArrayList<>();
 		for (ParkingSpot parkingSpot : parkingSpots) {
-			if (!parkingSpot.isTaken() && parkingSpot.getType().equalsIgnoreCase(type)) {
-				freeSpots.add(parkingSpot)
+			if (parkingSpot.isFree() && parkingSpot.getType().equalsIgnoreCase(type)) {
+				freeSpots.add(parkingSpot);
 			}
 		}
 		if (!freeSpots.isEmpty()) {
@@ -39,5 +39,29 @@ public class Floor {
 	public ParkingSpot getLastFreeParkingSpot(String type) {
 		List<ParkingSpot> parkingSpots = getFreeParkingSpots(type);
 		return getParkingSpot(parkingSpots.get(parkingSpots.size() - 1).getParkingSpotId());
+	}
+
+	public ParkingSpot getParkingSpot(int parkingSpotId) {
+		for (ParkingSpot parkingSpot : parkingSpots) {
+			if (parkingSpot.getParkingSpotId() == parkingSpotId) {
+				return parkingSpot;
+			}
+		}
+		//Todo keine runtimeexception schmeißen => Custom Exception
+		throw new RuntimeException("Parkplatz #" + floorNumber + "" + parkingSpotId + "exisitert nicht");
+	}
+
+	public int getAmountFreeParkingSpots() {
+		int amount = 0;
+		for (ParkingSpot parkingSpot : parkingSpots) {
+			if (parkingSpot.isFree()) {
+				amount++;
+			}
+		}
+		return amount;
+	}
+
+	public int getFloorNumber() {
+		return floorNumber;
 	}
 }
