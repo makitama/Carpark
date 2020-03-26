@@ -32,7 +32,7 @@ public class Carpark {
 
 	public int getAmountMotorcycles() {
 		int amount = 0;
-		for (Vehicle vehicle : vehicles.keySet()) {
+		for (Vehicle vehicle : getAllVehiclesWithoutParkingSpots()) {
 			if (vehicle instanceof Motorcycle) {
 				amount++;
 			}
@@ -42,12 +42,24 @@ public class Carpark {
 
 	public int getAmountCars() {
 		int amount = 0;
-		for (Vehicle vehicle : vehicles.keySet()) {
+		List<Vehicle> allVehicles = getAllVehiclesWithoutParkingSpots();
+		for (Vehicle vehicle : allVehicles) {
 			if (vehicle instanceof Car) {
 				amount++;
 			}
 		}
 		return amount;
+	}
+
+	public List<Vehicle> getAllVehiclesWithoutParkingSpots() {
+		List<Vehicle> allVehicles = new ArrayList<>();
+		parkedVehicles.entrySet().stream().forEach((Key) -> {
+			allVehicles.add(Key.getValue());
+		});
+		unparkedVehicles.entrySet().stream().forEach((Key) -> {
+			allVehicles.add(Key.getValue());
+		});
+		return allVehicles;
 	}
 
 	public Map<Integer, Vehicle> getParkedVehicles() {
@@ -60,37 +72,57 @@ public class Carpark {
 
 	public Map<Integer, Vehicle> getAllVehicles() {
 		Map<Integer, Vehicle> allVehicles = new HashMap<>();
-		parkedVehicles.
+		parkedVehicles.entrySet().stream().forEach((Key) -> {
+			allVehicles.put(Key.getKey(), Key.getValue());
+		});
+		unparkedVehicles.entrySet().stream().forEach((Key) -> {
+			allVehicles.put(Key.getKey(), Key.getValue());
+		});
+		return allVehicles;
+	}
+
+	public Map<Integer, Vehicle> getCars() {
+		Map<Integer, Vehicle> cars = new HashMap<>();
+		parkedVehicles.entrySet().stream().filter((Key) -> Key.getValue() instanceof Car).forEach((Key) -> {
+			cars.put(Key.getKey(), Key.getValue());
+		});
+		unparkedVehicles.entrySet().stream().filter((Key) -> Key.getValue() instanceof Car).forEach((Key) -> {
+			cars.put(Key.getKey(), Key.getValue());
+		});
+		return cars;
 	}
 
 	public List<Floor> getFloors() {
 		return floors;
 	}
 
-	public void listCars() {
-		for (Vehicle vehicle : vehicles.keySet()) {
+
+	//TODO listing zeugs in extra klasse??
+	public void listCars(Map<Integer, Vehicle> cars) {
+		for (Vehicle vehicle : cars.values()) {
 			if (vehicle instanceof Car) {
+				//Todo ausgabe auf Printklasse umleiten?
 				System.out.println(vehicle.toString());
 			}
 		}
+		//TODO hier fehlen die Parkplätze als Ausgabe noch!
 	}
 
-	public void listMotorcycles() {
-		for (Vehicle vehicle : vehicles.keySet()) {
+	public void listMotorcycles(Map<Integer, Vehicle> mcycles) {
+		for (Vehicle vehicle : mcycles.values()) {
 			if (vehicle instanceof Motorcycle) {
+				//Todo ausgabe auf Printklasse umleiten?
 				System.out.println(vehicle.toString());
 			}
 		}
+		//TODO hier fehlen die Parkplätze als Ausgabe noch!
 	}
 
-	public void listVehicles() {
-		if (vehicles.isEmpty()) {
-			//Error meldung rausgeben!
-		}
-		for (Vehicle vehicle : vehicles.keySet()) {
+	public void listVehicles(Map<Integer, Vehicle> vehicles) {
+		for (Vehicle vehicle : vehicles.values()) {
+			//Todo ausgabe auf Printklasse umleiten?
 			System.out.println(vehicle.toString());
 		}
+		//TODO hier fehlen die Parkplätze als Ausgabe noch!
 	}
-
-
 }
