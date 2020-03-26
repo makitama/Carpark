@@ -10,8 +10,8 @@ public class ParkingSpot {
 		this.taken = taken;
 	}
 
-	public Boolean isTaken() {
-		return taken;
+	public Boolean isFree() {
+		return !taken;
 	}
 
 	public int getParkingSpotId() {
