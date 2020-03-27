@@ -14,8 +14,7 @@ public class HelpCommando implements Commando {
 	@Override
 	public void execute(List<String> parameters) {
 		commandoMap.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach((Key) -> {
-			System.out.printf("%-32s|%-32s\n", Key.getKey(), " " + Key.getValue().getDescription());
-			//Todo ausgabe trennen!
+			(new PrintService()).printFormattedDescription(Key.getKey(),  Key.getValue().getDescription());
 		});
 	}
 
