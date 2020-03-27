@@ -11,15 +11,14 @@ public class Floor {
 	private int floorNumber;
 
 	public Floor(int carParkingSpots, int mcycleParkingSpots, int floorNumber) {
+		this.floorNumber = floorNumber;
 		parkingSpots = new ArrayList<>();
 		int idNr = 001;
 		for (int i = 0; i < carParkingSpots; i++) {
-			parkingSpots.add(new ParkingSpot(idNr++, ParkingSpotTypes.CAR.toString(), false));
-			System.out.println(idNr);
+			parkingSpots.add(new ParkingSpot(idNr++, VehicleTypes.CAR.toString(), false));
 		}
 		for (int i = 1; i <= mcycleParkingSpots; i++) {
-			parkingSpots.add(new ParkingSpot(idNr++, ParkingSpotTypes.MOTORCYCLE.toString(), false));
-			System.out.println(idNr);
+			parkingSpots.add(new ParkingSpot(idNr++, VehicleTypes.MOTORCYCLE.toString(), false));
 		}
 	}
 
