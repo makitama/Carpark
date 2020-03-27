@@ -100,33 +100,16 @@ public class Carpark {
 		return floors;
 	}
 
-
-	//TODO listing zeugs in extra klasse??
-	public void listCars(Map<Integer, Vehicle> cars) {
-		for (Vehicle vehicle : cars.values()) {
-			if (vehicle instanceof Car) {
-				//Todo ausgabe auf Printklasse umleiten?
-				System.out.println(vehicle.toString());
+	public Floor getFloor(int floorNumber){
+		List<Floor> floors = getFloors();
+		for(Floor floor : floors){
+			if(floor.getFloorNumber() == floorNumber){
+				return floor;
 			}
 		}
-		//TODO hier fehlen die Parkplätze als Ausgabe noch!
+		//todo no runtimeException
+		throw new RuntimeException("Floor not found");
 	}
 
-	public void listMotorcycles(Map<Integer, Vehicle> mcycles) {
-		for (Vehicle vehicle : mcycles.values()) {
-			if (vehicle instanceof Motorcycle) {
-				//Todo ausgabe auf Printklasse umleiten?
-				System.out.println(vehicle.toString());
-			}
-		}
-		//TODO hier fehlen die Parkplätze als Ausgabe noch!
-	}
 
-	public void listVehicles(Map<Integer, Vehicle> vehicles) {
-		for (Vehicle vehicle : vehicles.values()) {
-			//Todo ausgabe auf Printklasse umleiten?
-			System.out.println(vehicle.toString());
-		}
-		//TODO hier fehlen die Parkplätze als Ausgabe noch!
-	}
 }
