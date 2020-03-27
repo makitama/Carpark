@@ -1,6 +1,6 @@
 package main.java.vehicles;
 
-public class Vehicle {
+public abstract class Vehicle {
 
 	private String color = "";
 	private String licenseplate = "";
