@@ -14,7 +14,7 @@ import java.util.Map;
 public class Carpark {
 
 	private Map<Integer, Vehicle> parkedVehicles;
-	private Map<Integer, Vehicle> unparkedVehicles;
+	private Map<String, Vehicle> unparkedVehicles;
 	private List<Floor> floors;
 
 	public Carpark(int floors, int carParkingSpots, int mcycleParkingSpots) {
@@ -70,30 +70,42 @@ public class Carpark {
 		return parkedVehicles;
 	}
 
-	public Map<Integer, Vehicle> getUnparkedVehicles() {
+	public Map<String, Vehicle> getUnparkedVehicles() {
 		return unparkedVehicles;
 	}
 
-	public Map<Integer, Vehicle> getAllVehicles() {
-		Map<Integer, Vehicle> allVehicles = new HashMap<>();
-		parkedVehicles.entrySet().stream().forEach((Key) -> {
-			allVehicles.put(Key.getKey(), Key.getValue());
-		});
-		unparkedVehicles.entrySet().stream().forEach((Key) -> {
-			allVehicles.put(Key.getKey(), Key.getValue());
-		});
-		return allVehicles;
+	public void putInUnparked(String licensePlate, Vehicle vehicle){
+		unparkedVehicles.put(licensePlate, vehicle);
 	}
 
-	public Map<Integer, Vehicle> getCars() {
-		Map<Integer, Vehicle> cars = new HashMap<>();
+	public void putInParked(int parkingSpotId, Vehicle vehicle){
+		parkedVehicles.put(parkingSpotId, vehicle);
+	}
+
+	public List<Vehicle> getCars() {
+		List<Vehicle> cars = new ArrayList<>();
 		parkedVehicles.entrySet().stream().filter((Key) -> Key.getValue() instanceof Car).forEach((Key) -> {
-			cars.put(Key.getKey(), Key.getValue());
+			cars.add(Key.getValue());
 		});
 		unparkedVehicles.entrySet().stream().filter((Key) -> Key.getValue() instanceof Car).forEach((Key) -> {
-			cars.put(Key.getKey(), Key.getValue());
+			cars.add(Key.getValue());
 		});
 		return cars;
+	}
+
+	public List<Vehicle> getMotorcycles(){
+		List<Vehicle> mcycles = new ArrayList<>();
+		parkedVehicles.entrySet().stream().filter((Key) -> Key.getValue() instanceof Motorcycle).forEach((Key) -> mcycles.add(Key.getValue()));
+		unparkedVehicles.entrySet().stream().filter((Key) -> Key.getValue() instanceof Motorcycle).forEach((Key) -> mcycles.add(Key.getValue()));
+		return mcycles;
+	}
+
+	//todo needs to be tested!
+	public List<Vehicle> getTypeOfVehicle(Object type){
+		List<Vehicle> vehicles = new ArrayList<>();
+		parkedVehicles.entrySet().stream().filter((Key) -> (Key.getValue()).equals(type)).forEach((Key) -> vehicles.add(Key.getValue()));
+		unparkedVehicles.entrySet().stream().filter((Key) -> Key.getValue().equals(type)).forEach((Key) -> vehicles.add(Key.getValue()));
+		return vehicles;
 	}
 
 	public List<Floor> getFloors() {
