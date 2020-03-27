@@ -14,7 +14,7 @@ public class RandomParkingSpotStrategy implements ParkingSpotStrategy {
 		List<ParkingSpot> parkingSpots = floors.get(0).getFreeParkingSpots(type);
 		Collections.shuffle(parkingSpots);
 		if (parkingSpots.isEmpty()) {
-			return getParkingSpot(floors, type).getParkingSpotId();
+			return getParkingSpot(floors, type);
 		} else {
 			// todo rekursion oder schleife??
 			return parkingSpots.get(0).getParkingSpotId();

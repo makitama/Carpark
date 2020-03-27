@@ -14,6 +14,8 @@ public class LastFloorLastSpotStrategy implements ParkingSpotStrategy {
 				//todo stockwerknummer?
 			}
 		}
+		//throw new exception
+		return 0;
 	}
 
 }
