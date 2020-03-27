@@ -6,7 +6,18 @@ public class PrintService {
 		printToConsole(ausgabe);
 	}
 
-	private void printToConsole(String ausgabe){
+	public PrintService() {
+	}
+
+	private void printToConsole(String ausgabe) {
 		System.out.println(ausgabe);
+	}
+
+	public void printSuccessMessage(String ausgabe){
+		System.out.println(ausgabe + " erfolgreich");
+	}
+
+	public void printFormattedDescription(String command, String description){
+		System.out.printf("%-32s|%-32s\n", command, " " + description);
 	}
 }
