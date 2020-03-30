@@ -1,7 +1,7 @@
 package main.java.vehicles;
 
-import java.security.Policy;
-import java.util.List;
+import main.java.commandos.commandos.Factories.DriveInCommandoParamsFactory;
+
 
 public enum VehicleTypes {
 	MOTORCYCLE("Motorcycle"),
@@ -13,12 +13,12 @@ public enum VehicleTypes {
 
 	public Vehicle createNewVehicle(List<String> parameters){
 		Vehicle vehicle;
-		switch(value){
-			case "Car" :
-				vehicle = new Car(parameters);
+		switch (value) {
+			case "Car":
+				vehicle = new Car(driveInCommandoParamsFactory);
 				break;
-			case "Motorcycle" :
-				vehicle = new Motorcycle(parameters);
+			case "Motorcycle":
+				vehicle = new Motorcycle(driveInCommandoParamsFactory);
 				break;
 			default:
 				throw new IllegalStateException("Unexpected value: " + value);
