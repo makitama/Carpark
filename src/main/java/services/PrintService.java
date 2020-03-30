@@ -13,11 +13,17 @@ public class PrintService {
 		System.out.println(ausgabe);
 	}
 
-	public void printSuccessMessage(String ausgabe){
+	public void printSuccessMessage(String ausgabe) {
 		System.out.println(ausgabe + " erfolgreich");
 	}
 
-	public void printFormattedDescription(String command, String description){
+	public void printFormattedDescription(String command, String description) {
 		System.out.printf("%-32s|%-32s\n", command, " " + description);
+	}
+
+	public String getActualMethodName() {
+		int methodenebene = 2;
+		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[methodenebene];
+		return stackTraceElement.getMethodName();
 	}
 }
