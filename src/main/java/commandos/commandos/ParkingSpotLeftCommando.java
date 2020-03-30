@@ -2,12 +2,12 @@ package main.java.commandos.commandos;
 
 import main.java.commandos.Commando;
 
-import java.util.List;
+import java.util.Map;
 
 public class ParkingSpotLeftCommando implements Commando {
 
 	@Override
-	public void execute(List<String> parameters) {
+	public void execute(Map<String, String> parameters) {
 
 	}
 

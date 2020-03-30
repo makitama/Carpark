@@ -1,10 +1,10 @@
 package main.java.commandos.commandos;
 
 import main.java.commandos.Commando;
-import main.java.commandos.commandos.Factories.DriveInCommandoParamsFactory;
+import main.java.commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
 import main.java.services.CarparkService;
 
-import java.util.List;
+import java.util.Map;
 
 public class DriveOutCommando implements Commando {
 
@@ -15,9 +15,9 @@ public class DriveOutCommando implements Commando {
 	}
 
 	@Override
-	public void execute(List<String> parameters) {
-		DriveInCommandoParamsFactory driveInCommandoParamsFactory = new DriveInCommandoParamsFactory(parameters);
-		carparkService.driveOut(driveInCommandoParamsFactory);
+	public void execute(Map<String, String> parameters) {
+		DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory = new DriveInDriveOutCommandoParamsFactory(parameters);
+		carparkService.driveOut(driveInDriveOutCommandoParamsFactory);
 	}
 
 	@Override

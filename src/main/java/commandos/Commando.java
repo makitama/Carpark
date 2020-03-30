@@ -1,10 +1,10 @@
 package main.java.commandos;
 
-import java.util.List;
+import java.util.Map;
 
 public interface Commando {
 
-	void execute(List<String> parameters);
+	void execute(Map<String, String> parameters);
 
 	String getDescription();
 
