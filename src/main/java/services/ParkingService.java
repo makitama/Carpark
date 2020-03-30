@@ -14,31 +14,23 @@ public class ParkingService {
 		this.carparkService = carparkService;
 	}
 
-	public boolean takeParkingSpot(String licensePlate, int newParkingSpotId, int floorNr) {
-		return park(licensePlate, newParkingSpotId, floorNr, "park");
-	}
-
-	public boolean leaveParkingSpot(String licensePlate, int newParkingSpotId, int floorNr) {
-		return park(licensePlate, newParkingSpotId, floorNr, "unpark");
-	}
-
-	private boolean park(String licensePlate, int parkingSpotId, int floorNr, String park) {
-		return assignParkingSpotToCar(licensePlate, parkingSpotId, park, floorNr);
-	}
-
-	private Boolean assignParkingSpotToCar(String licensePlate, int parkingSpotId, String operation, int floorNumber){
-		ResultService vehicle = carparkService.foundVehicle(carpark.getParkedVehicles(), licensePlate);
-		Floor floor = carpark.getFloor(floorNumber);
-		if(operation.equalsIgnoreCase("unparking") && vehicle.getParkingSpotId() == parkingSpotId){
-			return unparking(parkingSpotId, vehicle.getVehicle(), licensePlate, floor);
-		} else if(operation.equalsIgnoreCase("parking")){
-			return parking(parkingSpotId, vehicle.getVehicle(), licensePlate, floor);
-		} else{
-			return false;
+	public void takeParkingSpot(String licensePlate, int parkingSpotId, int floorNr) {
+		if (isParkingSuccessful(parkingSpotId, carparkService.getUnparkedVehicle(licensePlate), licensePlate, carpark.getFloor(floorNr))) {
+			PrintService printService = new PrintService();
+			printService.printSuccessMessage(printService.getActualMethodName());
 		}
 	}
 
-	public Boolean parking(int parkingSpotId, Vehicle vehicle, String licensePlate, Floor floor){
+	public boolean leaveParkingSpot(String licensePlate, int newParkingSpotId, int floorNr) {
+		ResultService vehicle = carparkService.getParkedVehicle(licensePlate);
+		Floor floor = carpark.getFloor(floorNr);
+		if (vehicle.getParkingSpotId() == newParkingSpotId) {
+			return unparking(newParkingSpotId, vehicle.getVehicle(), licensePlate, floor);
+		}
+		return false;
+	}
+
+	public Boolean isParkingSuccessful(int parkingSpotId, Vehicle vehicle, String licensePlate, Floor floor) {
 		carpark.getUnparkedVehicles().remove(licensePlate, vehicle);
 		carpark.putInParked(parkingSpotId, vehicle);
 		floor.getParkingSpot(parkingSpotId).parking();

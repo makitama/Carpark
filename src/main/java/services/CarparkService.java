@@ -16,11 +16,11 @@ public class CarparkService {
 		this.carpark = carpark;
 	}
 
-	public ResultService foundVehicle(Map<Integer, Vehicle> vehicles, String licensePlate){
+	public ResultService getParkedVehicle(String licensePlate) {
 		Vehicle vehicle;
 		int parkingSpotId;
-		for (Map.Entry lp : vehicles.entrySet()){
-			if(((Vehicle)lp.getValue()).getLicenseplate().equalsIgnoreCase(licensePlate)){
+		for (Map.Entry lp : carpark.getParkedVehicles().entrySet()) {
+			if (((Vehicle) lp.getValue()).getLicenseplate().equalsIgnoreCase(licensePlate)) {
 				parkingSpotId = (int) lp.getKey();
 				vehicle = (Vehicle) lp.getValue();
 				return new ResultService(parkingSpotId, vehicle);
@@ -67,12 +67,11 @@ public class CarparkService {
 		printservice.printSuccessMessage(printservice.getActualMethodName());
 	}
 
-	public void driveOut(DriveInCommandoParamsFactory driveInCommandoParamsFactory) {
-		Vehicle vehicle = carpark.getVehicle(driveInCommandoParamsFactory.getLicense_plate());
+	public void driveOut(DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory) {
 		for (Vehicle vehicle1 : carpark.getUnparkedVehicles().values()) {
-			if (vehicle1.getLicenseplate().equalsIgnoreCase(vehicle.getLicenseplate())) {
-				carpark.deleteCar(vehicle.getLicenseplate());
-				vehicle = null;
+			if (vehicle1.getLicenseplate().equalsIgnoreCase(driveInDriveOutCommandoParamsFactory.getLicense_plate())) {
+				//todo reicht hier das löschen aus der hashmap aus um das fahrzeug an sich zu löschen?
+				carpark.deleteCar(driveInDriveOutCommandoParamsFactory.getLicense_plate());
 			}
 		}
 		PrintService printservice = new PrintService();
