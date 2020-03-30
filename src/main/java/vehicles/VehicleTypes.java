@@ -8,10 +8,16 @@ public enum VehicleTypes {
 	CAR("Car");
 
 	private String value;
+
 	VehicleTypes(String value) {
+		this.value = value;
 	}
 
-	public Vehicle createNewVehicle(List<String> parameters){
+	public String getValue() {
+		return value;
+	}
+
+	public Vehicle createNewVehicle(DriveInCommandoParamsFactory driveInCommandoParamsFactory) {
 		Vehicle vehicle;
 		switch (value) {
 			case "Car":
