@@ -1,10 +1,8 @@
 package main.java.commandos.commandos.Factories;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class DriveInCommandoParamsFactory {
+public class DriveInDriveOutCommandoParamsFactory {
 	private String type;
 	private String color;
 	private String license_plate;
@@ -14,16 +12,15 @@ public class DriveInCommandoParamsFactory {
 	//if motorcycle:
 	private String mtype;
 
-	public DriveInCommandoParamsFactory(List<String> parameters) {
-		Map<String, String> parameter = splitParameters(parameters);
-		type = parameter.get("TYPE");
-		color = parameter.get("COLOR");
-		license_plate = parameter.get("LICENSE_PLATE");
+	public DriveInDriveOutCommandoParamsFactory(Map<String, String> parameters) {
+		type = parameters.get("TYPE");
+		color = parameters.get("COLOR");
+		license_plate = parameters.get("LICENSE_PLATE");
 		if (type.equalsIgnoreCase("CAR")) {
-			height = Double.parseDouble(parameter.get("HEIGHT"));
-			manufacturer = parameter.get("MANUFACTURER");
+			height = Double.parseDouble(parameters.get("HEIGHT"));
+			manufacturer = parameters.get("MANUFACTURER");
 		} else {
-			mtype = parameter.get("MTYPE");
+			mtype = parameters.get("MTYPE");
 		}
 	}
 

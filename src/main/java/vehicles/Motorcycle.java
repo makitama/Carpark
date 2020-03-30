@@ -1,6 +1,6 @@
 package main.java.vehicles;
 
-import main.java.commandos.commandos.Factories.DriveInCommandoParamsFactory;
+import main.java.commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
 
 public class Motorcycle extends Vehicle {
 
@@ -12,10 +12,10 @@ public class Motorcycle extends Vehicle {
 		this.mtype = mtype;
 	}
 
-	public Motorcycle(DriveInCommandoParamsFactory driveInCommandoParamsFactory) {
-		setColor(driveInCommandoParamsFactory.getColor());
-		setLicenseplate(driveInCommandoParamsFactory.getLicense_plate());
-		this.mtype = driveInCommandoParamsFactory.getMtype();
+	public Motorcycle(DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory) {
+		setColor(driveInDriveOutCommandoParamsFactory.getColor());
+		setLicenseplate(driveInDriveOutCommandoParamsFactory.getLicense_plate());
+		this.mtype = driveInDriveOutCommandoParamsFactory.getMtype();
 	}
 
 	@Override

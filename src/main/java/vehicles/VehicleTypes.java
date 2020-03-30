@@ -1,6 +1,6 @@
 package main.java.vehicles;
 
-import main.java.commandos.commandos.Factories.DriveInCommandoParamsFactory;
+import main.java.commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
 
 
 public enum VehicleTypes {
@@ -17,14 +17,14 @@ public enum VehicleTypes {
 		return value;
 	}
 
-	public Vehicle createNewVehicle(DriveInCommandoParamsFactory driveInCommandoParamsFactory) {
+	public Vehicle createNewVehicle(DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory) {
 		Vehicle vehicle;
 		switch (value) {
 			case "Car":
-				vehicle = new Car(driveInCommandoParamsFactory);
+				vehicle = new Car(driveInDriveOutCommandoParamsFactory);
 				break;
 			case "Motorcycle":
-				vehicle = new Motorcycle(driveInCommandoParamsFactory);
+				vehicle = new Motorcycle(driveInDriveOutCommandoParamsFactory);
 				break;
 			default:
 				throw new IllegalStateException("Unexpected value: " + value);

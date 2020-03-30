@@ -1,6 +1,6 @@
 package main.java.vehicles;
 
-import main.java.commandos.commandos.Factories.DriveInCommandoParamsFactory;
+import main.java.commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
 
 public class Car extends Vehicle {
 
@@ -14,11 +14,11 @@ public class Car extends Vehicle {
 		this.height = height;
 	}
 
-	public Car(DriveInCommandoParamsFactory driveInCommandoParamsFactory) {
-		setColor(driveInCommandoParamsFactory.getColor());
-		setLicenseplate(driveInCommandoParamsFactory.getLicense_plate());
-		this.brand = driveInCommandoParamsFactory.getManufacturer();
-		this.height = driveInCommandoParamsFactory.getHeight();
+	public Car(DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory) {
+		setColor(driveInDriveOutCommandoParamsFactory.getColor());
+		setLicenseplate(driveInDriveOutCommandoParamsFactory.getLicense_plate());
+		this.brand = driveInDriveOutCommandoParamsFactory.getManufacturer();
+		this.height = driveInDriveOutCommandoParamsFactory.getHeight();
 	}
 
 	@Override
