@@ -1,11 +1,9 @@
 package main.java;
 
-import main.java.services.PrintService;
 import main.java.vehicles.Car;
 import main.java.vehicles.Motorcycle;
 import main.java.vehicles.Vehicle;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,12 +72,20 @@ public class Carpark {
 		return unparkedVehicles;
 	}
 
-	public void putInUnparked(String licensePlate, Vehicle vehicle){
+	public void putInUnparked(String licensePlate, Vehicle vehicle) {
 		unparkedVehicles.put(licensePlate, vehicle);
 	}
 
-	public void putInParked(int parkingSpotId, Vehicle vehicle){
+	public void putInParked(int parkingSpotId, Vehicle vehicle) {
 		parkedVehicles.put(parkingSpotId, vehicle);
+	}
+
+	public void deleteCar(String licensePLate) {
+		for (Vehicle vehicle : unparkedVehicles.values()) {
+			if (vehicle.getLicenseplate().equalsIgnoreCase(licensePLate)) {
+				unparkedVehicles.remove(vehicle.getLicenseplate(), vehicle);
+			}
+		}
 	}
 
 	public List<Vehicle> getCars() {
@@ -112,10 +118,10 @@ public class Carpark {
 		return floors;
 	}
 
-	public Floor getFloor(int floorNumber){
+	public Floor getFloor(int floorNumber) {
 		List<Floor> floors = getFloors();
-		for(Floor floor : floors){
-			if(floor.getFloorNumber() == floorNumber){
+		for (Floor floor : floors) {
+			if (floor.getFloorNumber() == floorNumber) {
 				return floor;
 			}
 		}
