@@ -1,6 +1,7 @@
 package main.java.services;
 
 import main.java.Carpark;
+import main.java.commandos.commandos.Factories.DriveInCommandoParamsFactory;
 import main.java.vehicles.Car;
 import main.java.vehicles.Motorcycle;
 import main.java.vehicles.Vehicle;
@@ -54,14 +55,27 @@ public class CarparkService {
 	}
 
 	//TODO DriveIn überarbeiten!
-	public void driveIn(Vehicle vehicle){
-		for(Vehicle vehicle1 : carpark.getParkedVehicles().values()){
-			if(vehicle1.getLicenseplate().equalsIgnoreCase(vehicle.getLicenseplate())){
+	public void driveIn(Vehicle vehicle) {
+		for (Vehicle vehicle1 : carpark.getParkedVehicles().values()) {
+			if (vehicle1.getLicenseplate().equalsIgnoreCase(vehicle.getLicenseplate())) {
 				throw new RuntimeException("Ein Fahrzeug mit diesem Kennzeichen befindet sich bereits im Parkhaus");
 			}
 		}
 		carpark.putInUnparked(vehicle.getLicenseplate(), vehicle);
 		PrintService printservice = new PrintService();
-		printservice.printSuccessMessage(new Object().getClass().getEnclosingMethod().getName());
+		//String temp = new Object().getClass().getEnclosingMethod().getName();
+		printservice.printSuccessMessage(printservice.getActualMethodName());
+	}
+
+	public void driveOut(DriveInCommandoParamsFactory driveInCommandoParamsFactory) {
+		Vehicle vehicle = carpark.getVehicle(driveInCommandoParamsFactory.getLicense_plate());
+		for (Vehicle vehicle1 : carpark.getUnparkedVehicles().values()) {
+			if (vehicle1.getLicenseplate().equalsIgnoreCase(vehicle.getLicenseplate())) {
+				carpark.deleteCar(vehicle.getLicenseplate());
+				vehicle = null;
+			}
+		}
+		PrintService printservice = new PrintService();
+		printservice.printSuccessMessage(printservice.getActualMethodName());
 	}
 }
