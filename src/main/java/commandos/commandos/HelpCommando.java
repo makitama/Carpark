@@ -4,17 +4,20 @@ package main.java.commandos.commandos;
 import main.java.commandos.Commando;
 import main.java.services.PrintService;
 
-import java.util.List;
 import java.util.Map;
 
 public class HelpCommando implements Commando {
 
 	Map<String, Commando> commandoMap;
 
+	public HelpCommando(Map<String, Commando> commandoMap) {
+		this.commandoMap = commandoMap;
+	}
+
 	@Override
-	public void execute(List<String> parameters) {
+	public void execute(Map<String, String> parameters) {
 		commandoMap.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach((Key) -> {
-			(new PrintService()).printFormattedDescription(Key.getKey(),  Key.getValue().getDescription());
+			(new PrintService()).printFormattedDescription(Key.getKey(), Key.getValue().getDescription());
 		});
 	}
 
