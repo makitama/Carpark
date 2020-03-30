@@ -39,8 +39,8 @@ public class CommandoService {
 
 	public Map<String, String> splitParameters(String[] parameters) {
 		Map<String, String> params = new HashMap<>();
-		for (String parameter : parameters) {
-			String[] param = parameter.split("=");
+		for (int i = 1; i < parameters.length; i++) {
+			String[] param = parameters[i].split("=");
 			params.put(param[0], param[1]);
 		}
 		return params;
