@@ -123,5 +123,12 @@ public class Carpark {
 		throw new RuntimeException("Floor not found");
 	}
 
-
+	public Vehicle getVehicle(String licenseplate) {
+		for (Vehicle vehicle1 : getUnparkedVehicles().values()) {
+			if (vehicle1.getLicenseplate().equalsIgnoreCase(licenseplate)) {
+				return vehicle1;
+			}
+		}
+		throw new RuntimeException("Kein passendes Fahrzeug gefunden");
+	}
 }
