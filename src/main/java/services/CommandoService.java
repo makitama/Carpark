@@ -9,17 +9,14 @@ import java.util.Map;
 public class CommandoService {
 
 	private String commando;
-	private List<String> parameters;
+	private Map<String, String> parameters;
 
-	public void commandoParser(String commando){
+	public void commandoParser(String commando) {
 		String[] splittedCommando = commando.toUpperCase().split(" ");
+		parameters = new HashMap<>();
 		this.commando = splittedCommando[0];
-		//todo überarbeiten
-		parameters = new ArrayList<>();
-		if(splittedCommando.length > 1){
-			for(int i=1; i< splittedCommando.length; i++){
-				parameters.add(splittedCommando[i]);
-			}
+		if (splittedCommando.length > 1) {
+			parameters = splitParameters(splittedCommando);
 		}
 	}
 
@@ -27,19 +24,27 @@ public class CommandoService {
 		return commando;
 	}
 
-	public List<String> getParameters(){
-		if(parameters.isEmpty()){
-			return new ArrayList<>();
-		}else{
+	public Map<String, String> getParameters() {
+		if (parameters.isEmpty()) {
+			return new HashMap<>();
+		} else {
 			return parameters;
 		}
 	}
 
-	public void checkIfCommandoExists(Map<String, Commando> commandos){
-		if(!commandos.containsKey(commando)){
-			throw new CommandNotFoundException(commando);
+	public void checkIfCommandoExists(Map<String, Commando> commandos) {
+		if (!commandos.containsKey(commando)) {
+			//todo throw new CommandNotFoundException(commando);
 		}
 	}
 
+	public Map<String, String> splitParameters(String[] parameters) {
+		Map<String, String> params = new HashMap<>();
+		for (String parameter : parameters) {
+			String[] param = parameter.split("=");
+			params.put(param[0], param[1]);
+		}
+		return params;
+	}
 
 }

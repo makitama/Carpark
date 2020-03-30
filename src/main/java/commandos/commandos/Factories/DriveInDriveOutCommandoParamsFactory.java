@@ -47,13 +47,4 @@ public class DriveInDriveOutCommandoParamsFactory {
 	public String getMtype() {
 		return mtype;
 	}
-
-	public Map<String, String> splitParameters(List<String> parameters) {
-		Map<String, String> params = new HashMap<>();
-		for (String parameter : parameters) {
-			String[] param = parameter.split("=");
-			params.put(param[0], param[1]);
-		}
-		return params;
-	}
 }
