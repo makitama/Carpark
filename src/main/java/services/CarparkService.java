@@ -29,8 +29,17 @@ public class CarparkService {
 		throw new RuntimeException("Kein geparktes Fahrzeug gefunden");
 	}
 
-	public void listCars(Map<Integer, Vehicle> cars, ParkingSpotService parkingSpotService) {
-		for (Vehicle vehicle : cars.values()) {
+	public Vehicle getUnparkedVehicle(String licenseplate) {
+		for (Vehicle vehicle1 : carpark.getUnparkedVehicles().values()) {
+			if (vehicle1.getLicenseplate().equalsIgnoreCase(licenseplate)) {
+				return vehicle1;
+			}
+		}
+		throw new RuntimeException("Kein ungeparktes passendes Fahrzeug gefunden");
+	}
+
+	public void listCars(ParkingSpotService parkingSpotService) {
+		for (Vehicle vehicle : carpark.getCars()) {
 			if (vehicle instanceof Car) {
 				new PrintService(vehicle.toString() + "Parkplatz: " + parkingSpotService.getParkingSpotOfVehicle(vehicle.getLicenseplate()));
 			}
