@@ -31,7 +31,7 @@ public class CommandoList {
 		commandoMap.put("DRIVE_OUT", new DriveOutCommando(carparkService));
 		commandoMap.put("ENDE", new EndeCommando());
 		commandoMap.put("PARKINGSPOTLEFT", new ParkingSpotLeftCommando());
-		commandoMap.put("HELP", new HelpCommando());
+		commandoMap.put("HELP", new HelpCommando(commandoMap));
 	}
 
 	public Map<String, Commando> getCommandoMap(){

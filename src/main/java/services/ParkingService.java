@@ -45,7 +45,7 @@ public class ParkingService {
 		return true;
 	}
 
-	public Boolean unparking(int parkingSpotId, Vehicle vehicle, String licensePlate, Floor floor){
+	public Boolean unparking(int parkingSpotId, Vehicle vehicle, String licensePlate, Floor floor) {
 		carpark.getParkedVehicles().remove(parkingSpotId, vehicle);
 		carpark.putInUnparked(licensePlate, vehicle);
 		floor.getParkingSpot(parkingSpotId).leaving();

@@ -40,15 +40,15 @@ public class CarparkMain {
 		CommandoService commandoService = new CommandoService();
 		Scanner scanner = new Scanner(System.in);
 
-		do{
-			try{
+		do {
+			try {
 				//Todo: validate();
 				commandoService.commandoParser(scanner.nextLine());
 				commandoService.checkIfCommandoExists(commandos);
 				String commando = commandoService.getCommando();
 				commandos.get(commando).execute(commandoService.getParameters());
 				System.out.println(nextCommand);
-			} catch(Exception ex){
+			} catch (Exception ex) {
 				System.out.println(ex.getMessage());
 				System.out.println(nextCommand);
 			}

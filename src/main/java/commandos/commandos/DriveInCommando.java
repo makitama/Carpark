@@ -1,12 +1,12 @@
 package main.java.commandos.commandos;
 
 import main.java.commandos.Commando;
-import main.java.commandos.commandos.Factories.DriveInCommandoParamsFactory;
+import main.java.commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
 import main.java.services.CarparkService;
 import main.java.vehicles.Vehicle;
 import main.java.vehicles.VehicleTypes;
 
-import java.util.List;
+import java.util.Map;
 
 public class DriveInCommando implements Commando {
 
@@ -17,11 +17,11 @@ public class DriveInCommando implements Commando {
 	}
 
 	@Override
-	public void execute(List<String> parameters) {
-		DriveInCommandoParamsFactory driveInCommandoParamsFactory = new DriveInCommandoParamsFactory(parameters);
+	public void execute(Map<String, String> parameters) {
+		DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory = new DriveInDriveOutCommandoParamsFactory(parameters);
 		for (VehicleTypes possibleVehicleType : VehicleTypes.values()) {
-			if (possibleVehicleType.getValue().equalsIgnoreCase(driveInCommandoParamsFactory.getType())) {
-				Vehicle vehicle = possibleVehicleType.createNewVehicle(driveInCommandoParamsFactory);
+			if (possibleVehicleType.getValue().equalsIgnoreCase(driveInDriveOutCommandoParamsFactory.getType())) {
+				Vehicle vehicle = possibleVehicleType.createNewVehicle(driveInDriveOutCommandoParamsFactory);
 				carparkService.driveIn(vehicle);
 			}
 		}
