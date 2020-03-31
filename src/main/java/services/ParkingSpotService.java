@@ -23,13 +23,13 @@ public class ParkingSpotService {
 	}
 
 	public int getParkingSpotOfVehicle(String licensePlate){
-		for(Map.Entry parkedVehicle: carpark.getParkedVehicles().entrySet()){
-			if(((Vehicle) parkedVehicle.getValue()).getLicenseplate().equalsIgnoreCase(licensePlate)){
+		for (Map.Entry parkedVehicle : carpark.getParkedVehicles().entrySet()) {
+			if (((Vehicle) parkedVehicle.getValue()).getLicenseplate().equalsIgnoreCase(licensePlate)) {
 				return (int) parkedVehicle.getKey();
 			}
 		}
 		//todo keine RuntimeException!
-		throw new RuntimeException("Fahrzeug " + licensePlate + " nicht geparkt");
+		return 0;
 	}
 
 }
