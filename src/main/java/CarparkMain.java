@@ -27,9 +27,9 @@ public class CarparkMain {
 	public static CommandoList initializeCommandoList() throws IOException {
 		ReadConfigFile properties = new ReadConfigFile();
 		Carpark carpark = new Carpark(properties.getPropertyValues());
-		CarparkService carparkService = new CarparkService(carpark);
-		ParkingService parkingService = new ParkingService(carpark, carparkService);
 		ParkingSpotService parkingSpotService = new ParkingSpotService(carpark);
+		CarparkService carparkService = new CarparkService(carpark, parkingSpotService);
+		ParkingService parkingService = new ParkingService(carpark, carparkService);
 		return new CommandoList(carpark, carparkService, parkingService, parkingSpotService);
 	}
 
