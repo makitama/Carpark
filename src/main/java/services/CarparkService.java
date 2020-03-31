@@ -3,7 +3,6 @@ package main.java.services;
 import main.java.Carpark;
 import main.java.commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
 import main.java.vehicles.Car;
-import main.java.vehicles.Motorcycle;
 import main.java.vehicles.Vehicle;
 
 import java.io.IOException;
@@ -64,26 +63,38 @@ public class CarparkService {
 		return ((id > 0) ? ", Parkplatz: " + id : ", nicht geparkt");
 	}
 
-	public void listMotorcycles(Map<Integer, Vehicle> mcycles) {
-		for (Vehicle vehicle : mcycles.values()) {
-			if (vehicle instanceof Motorcycle) {
-				int id = parkingSpotService.getParkingSpotOfVehicle(vehicle.getLicenseplate());
-				new PrintService(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
-			}
+	public void listMotorcycles() {
+		for (Vehicle vehicle : carpark.getMotorcycles()) {
+			new PrintService(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 		}
 		//TODO was wenn keine motoräder da sind. => Ausgabe meldung
 	}
 
-	public void listVehicles(Map<Integer, Vehicle> vehicles) {
-		for (Vehicle vehicle : vehicles.values()) {
+	public void listMotorcycles(String file) throws IOException {
+		for (Vehicle vehicle : carpark.getMotorcycles()) {
+			(new PrintService()).printToFile(file, vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
+		}
+		//TODO was wenn keine motoräder da sind. => Ausgabe meldung
+	}
+
+
+	public void listVehicles() {
+		for (Vehicle vehicle : carpark.getAllVehiclesWithoutParkingSpots()) {
 			new PrintService(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
+		}
+		//TODO was wenn keine fahrzeuge da sind => Ausgabe meldung
+	}
+
+	public void listVehicles(String file) throws IOException {
+		for (Vehicle vehicle : carpark.getAllVehiclesWithoutParkingSpots()) {
+			(new PrintService()).printToFile(file, vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 		}
 		//TODO was wenn keine fahrzeuge da sind => Ausgabe meldung
 	}
 
 	//TODO DriveIn überarbeiten!
 	public void driveIn(Vehicle vehicle) {
-		for (Vehicle vehicle1 : carpark.getParkedVehicles().values()) {
+		for (Vehicle vehicle1 : carpark.getAllVehiclesWithoutParkingSpots()) {
 			if (vehicle1.getLicenseplate().equalsIgnoreCase(vehicle.getLicenseplate())) {
 				throw new RuntimeException("Ein Fahrzeug mit diesem Kennzeichen befindet sich bereits im Parkhaus");
 			}
