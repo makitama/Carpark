@@ -20,7 +20,7 @@ public class DriveInDriveOutCommandoParamsFactory {
 			height = Double.parseDouble(parameters.get("HEIGHT"));
 			manufacturer = parameters.get("MANUFACTURER");
 		} else {
-			mtype = parameters.get("MTYPE");
+			mtype = parameters.get("M_TYPE");
 		}
 	}
 

@@ -31,6 +31,6 @@ public class ParkingSpotTakenCommando implements Commando {
 
 	@Override
 	public String getParameterList() {
-		return null;
+		return "id of parkingspot, floorNr, license plate";
 	}
 }

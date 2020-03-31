@@ -27,6 +27,6 @@ public class DriveOutCommando implements Commando {
 
 	@Override
 	public String getParameterList() {
-		return null;
+		return "type, color, license_plate. Bei Auto: height, manufacturer. Bei Motorrad: m_type";
 	}
 }

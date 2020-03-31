@@ -35,6 +35,6 @@ public class DriveInCommando implements Commando {
 
 	@Override
 	public String getParameterList() {
-		return "";
+		return "type, color, license_plate. Bei Auto: height, manufacturer. Bei Motorrad: m_type";
 	}
 }

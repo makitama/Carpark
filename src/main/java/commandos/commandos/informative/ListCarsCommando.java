@@ -34,6 +34,6 @@ public class ListCarsCommando implements Commando {
 
 	@Override
 	public String getParameterList() {
-		return "-";
+		return "optional: file -> angabe Dateipfad";
 	}
 }
