@@ -31,7 +31,8 @@ public class CommandoList {
 		commandoMap.put("DRIVE_IN", new DriveInCommando(carparkService));
 		commandoMap.put("DRIVE_OUT", new DriveOutCommando(carparkService));
 		commandoMap.put("EXIT", new ExitCommando());
-		commandoMap.put("PARKINGSPOTLEFT", new ParkingSpotLeftCommando());
+		commandoMap.put("PARKING_SPOT_LEFT", new ParkingSpotLeftCommando(parkingService));
+		commandoMap.put("PARKING_SPOT_TAKEN", new ParkingSpotTakenCommando(parkingService));
 		commandoMap.put("HELP", new HelpCommando(commandoMap));
 		commandoMap.put("LIST_CARS", new ListCarsCommando(carparkService));
 	}

@@ -21,13 +21,15 @@ public class ParkingService {
 		}
 	}
 
-	public boolean leaveParkingSpot(String licensePlate, int newParkingSpotId, int floorNr) {
+	public void leaveParkingSpot(String licensePlate, int newParkingSpotId, int floorNr) {
 		ResultService vehicle = carparkService.getParkedVehicle(licensePlate);
 		Floor floor = carpark.getFloor(floorNr);
 		if (vehicle.getParkingSpotId() == newParkingSpotId) {
-			return unparking(newParkingSpotId, vehicle.getVehicle(), licensePlate, floor);
+			if (unparking(newParkingSpotId, vehicle.getVehicle(), licensePlate, floor)) {
+				PrintService printService = new PrintService();
+				printService.printSuccessMessage(printService.getActualMethodName());
+			}
 		}
-		return false;
 	}
 
 	public Boolean isParkingSuccessful(int parkingSpotId, Vehicle vehicle, String licensePlate, Floor floor) {
