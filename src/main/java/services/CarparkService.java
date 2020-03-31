@@ -11,9 +11,11 @@ import java.util.Map;
 public class CarparkService {
 
 	private Carpark carpark;
+	private ParkingSpotService parkingSpotService;
 
-	public CarparkService(Carpark carpark) {
+	public CarparkService(Carpark carpark, ParkingSpotService parkingSpotService) {
 		this.carpark = carpark;
+		this.parkingSpotService = parkingSpotService;
 	}
 
 	public ResultService getParkedVehicle(String licensePlate) {
@@ -38,29 +40,44 @@ public class CarparkService {
 		throw new RuntimeException("Kein ungeparktes passendes Fahrzeug gefunden");
 	}
 
-	public void listCars(ParkingSpotService parkingSpotService) {
+	public void listCars() {
 		for (Vehicle vehicle : carpark.getCars()) {
 			if (vehicle instanceof Car) {
-				new PrintService(vehicle.toString() + "Parkplatz: " + parkingSpotService.getParkingSpotOfVehicle(vehicle.getLicenseplate()));
+				new PrintService(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 			}
 		}
-		//TODO hier fehlen die Parkplätze als Ausgabe noch!
+		//TODO was wenn keine autos geparkt sind => ausgabe meldung
 	}
 
-	public void listMotorcycles(Map<Integer, Vehicle> mcycles, ParkingSpotService parkingSpotService) {
-		for (Vehicle vehicle : mcycles.values()) {
-			if (vehicle instanceof Motorcycle) {
-				new PrintService(vehicle.toString() + "Parkplatz: " + parkingSpotService.getParkingSpotOfVehicle(vehicle.getLicenseplate()));
+	public void listCars(String file) throws IOException {
+		for (Vehicle vehicle : carpark.getCars()) {
+			if (vehicle instanceof Car) {
+				new PrintService().printToFile(file, vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 			}
 		}
-		//TODO hier fehlen die Parkplätze als Ausgabe noch!
+		//TODO was wenn keine autos geparkt sind => ausgabe meldung
+	}
+
+	public String parkingSpotOfVehicleIfVehicleIsParked(String licenseplate) {
+		int id = parkingSpotService.getParkingSpotOfVehicle(licenseplate);
+		return ((id > 0) ? ", Parkplatz: " + id : ", nicht geparkt");
+	}
+
+	public void listMotorcycles(Map<Integer, Vehicle> mcycles) {
+		for (Vehicle vehicle : mcycles.values()) {
+			if (vehicle instanceof Motorcycle) {
+				int id = parkingSpotService.getParkingSpotOfVehicle(vehicle.getLicenseplate());
+				new PrintService(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
+			}
+		}
+		//TODO was wenn keine motoräder da sind. => Ausgabe meldung
 	}
 
 	public void listVehicles(Map<Integer, Vehicle> vehicles) {
 		for (Vehicle vehicle : vehicles.values()) {
-			new PrintService(vehicle.toString());
+			new PrintService(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 		}
-		//TODO hier fehlen die Parkplätze als Ausgabe noch!
+		//TODO was wenn keine fahrzeuge da sind => Ausgabe meldung
 	}
 
 	//TODO DriveIn überarbeiten!
@@ -81,9 +98,11 @@ public class CarparkService {
 			if (vehicle1.getLicenseplate().equalsIgnoreCase(driveInDriveOutCommandoParamsFactory.getLicense_plate())) {
 				//todo reicht hier das löschen aus der hashmap aus um das fahrzeug an sich zu löschen?
 				carpark.deleteCar(driveInDriveOutCommandoParamsFactory.getLicense_plate());
+				PrintService printservice = new PrintService();
+				printservice.printSuccessMessage(printservice.getActualMethodName());
 			}
 		}
-		PrintService printservice = new PrintService();
-		printservice.printSuccessMessage(printservice.getActualMethodName());
+		//todo print message kein auto gefunden!
+		//todo in parking cars schauen ob da auto gefunden => entsprechende meldung ausgeben!
 	}
 }
