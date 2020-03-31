@@ -90,12 +90,16 @@ public class Carpark {
 
 	public List<Vehicle> getCars() {
 		List<Vehicle> cars = new ArrayList<>();
-		parkedVehicles.entrySet().stream().filter((Key) -> Key.getValue() instanceof Car).forEach((Key) -> {
-			cars.add(Key.getValue());
-		});
-		unparkedVehicles.entrySet().stream().filter((Key) -> Key.getValue() instanceof Car).forEach((Key) -> {
-			cars.add(Key.getValue());
-		});
+		if (!parkedVehicles.isEmpty()) {
+			parkedVehicles.entrySet().stream().filter((Key) -> Key.getValue() instanceof Car).forEach((Key) -> {
+				cars.add(Key.getValue());
+			});
+		}
+		if (!unparkedVehicles.isEmpty()) {
+			unparkedVehicles.entrySet().stream().filter((Key) -> Key.getValue() instanceof Car).forEach((Key) -> {
+				cars.add(Key.getValue());
+			});
+		}
 		return cars;
 	}
 
