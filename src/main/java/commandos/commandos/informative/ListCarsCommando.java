@@ -1,15 +1,14 @@
-package main.java.commandos.commandos;
+package main.java.commandos.commandos.informative;
 
 import main.java.commandos.Commando;
 import main.java.services.CarparkService;
-import main.java.services.ParkingSpotService;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class ListCarsCommando implements Commando {
 
 	private CarparkService carparkService;
-	private ParkingSpotService parkingSpotService;
 
 	public ListCarsCommando(CarparkService carparkService) {
 		this.carparkService = carparkService;
@@ -17,7 +16,15 @@ public class ListCarsCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
-		carparkService.listCars(parkingSpotService);
+		if (parameters.isEmpty()) {
+			carparkService.listCars();
+		} else {
+			try {
+				carparkService.listCars(parameters.get("FILE"));
+			} catch (IOException ex) {
+				System.err.println(ex.getMessage());
+			}
+		}
 	}
 
 	@Override
@@ -27,6 +34,6 @@ public class ListCarsCommando implements Commando {
 
 	@Override
 	public String getParameterList() {
-		return "";
+		return "-";
 	}
 }

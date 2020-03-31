@@ -2,6 +2,7 @@ package main.java.commandos;
 
 import main.java.Carpark;
 import main.java.commandos.commandos.*;
+import main.java.commandos.commandos.informative.ListCarsCommando;
 import main.java.services.CarparkService;
 import main.java.services.ParkingService;
 import main.java.services.ParkingSpotService;
@@ -32,6 +33,7 @@ public class CommandoList {
 		commandoMap.put("EXIT", new ExitCommando());
 		commandoMap.put("PARKINGSPOTLEFT", new ParkingSpotLeftCommando());
 		commandoMap.put("HELP", new HelpCommando(commandoMap));
+		commandoMap.put("LIST_CARS", new ListCarsCommando(carparkService));
 	}
 
 	public Map<String, Commando> getCommandoMap(){
