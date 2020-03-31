@@ -3,13 +3,10 @@ package main.java.services;
 import main.java.Carpark;
 import main.java.Floor;
 import main.java.parkingStrategies.ParkingSpotStrategies;
-import main.java.parkingStrategies.ParkingSpotStrategy;
 import main.java.vehicles.Vehicle;
 
-import java.security.Key;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class ParkingSpotService {
 

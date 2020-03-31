@@ -6,6 +6,7 @@ import main.java.vehicles.Car;
 import main.java.vehicles.Motorcycle;
 import main.java.vehicles.Vehicle;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class CarparkService {
@@ -89,7 +90,6 @@ public class CarparkService {
 		}
 		carpark.putInUnparked(vehicle.getLicenseplate(), vehicle);
 		PrintService printservice = new PrintService();
-		//String temp = new Object().getClass().getEnclosingMethod().getName();
 		printservice.printSuccessMessage(printservice.getActualMethodName());
 	}
 
