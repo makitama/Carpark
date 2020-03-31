@@ -16,8 +16,10 @@ public class HelpCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
+		PrintService printService = new PrintService();
+		printService.printFormattedDescription("Commando", "Beschreibung", "Parameter");
 		commandoMap.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach((Key) -> {
-			(new PrintService()).printFormattedDescription(Key.getKey(), Key.getValue().getDescription());
+			printService.printFormattedDescription(Key.getKey(), Key.getValue().getDescription(), Key.getValue().getParameterList());
 		});
 	}
 
@@ -28,6 +30,6 @@ public class HelpCommando implements Commando {
 
 	@Override
 	public String getParameterList() {
-		return null;
+		return "-";
 	}
 }
