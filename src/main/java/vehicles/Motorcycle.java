@@ -20,6 +20,6 @@ public class Motorcycle extends Vehicle {
 
 	@Override
 	public String toString() {
-		return "Motorcycle -> " + "type: '" + mtype + "'";
+		return "Motorcycle -> " + "type: '" + mtype + "'" + super.toString();
 	}
 }
