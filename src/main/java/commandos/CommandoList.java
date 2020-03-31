@@ -29,7 +29,7 @@ public class CommandoList {
 		commandoMap = new HashMap<>();
 		commandoMap.put("DRIVE_IN", new DriveInCommando(carparkService));
 		commandoMap.put("DRIVE_OUT", new DriveOutCommando(carparkService));
-		commandoMap.put("ENDE", new EndeCommando());
+		commandoMap.put("EXIT", new ExitCommando());
 		commandoMap.put("PARKINGSPOTLEFT", new ParkingSpotLeftCommando());
 		commandoMap.put("HELP", new HelpCommando(commandoMap));
 	}

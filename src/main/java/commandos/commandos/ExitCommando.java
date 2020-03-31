@@ -5,7 +5,7 @@ import main.java.services.PrintService;
 
 import java.util.Map;
 
-public class EndeCommando implements Commando {
+public class ExitCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
@@ -20,6 +20,6 @@ public class EndeCommando implements Commando {
 
 	@Override
 	public String getParameterList() {
-		return "Keine Parameter";
+		return "-";
 	}
 }
