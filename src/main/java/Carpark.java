@@ -33,24 +33,11 @@ public class Carpark {
 	}
 
 	public int getAmountMotorcycles() {
-		int amount = 0;
-		for (Vehicle vehicle : getAllVehiclesWithoutParkingSpots()) {
-			if (vehicle instanceof Motorcycle) {
-				amount++;
-			}
-		}
-		return amount;
+		return getMotorcycles().size();
 	}
 
 	public int getAmountCars() {
-		int amount = 0;
-		List<Vehicle> allVehicles = getAllVehiclesWithoutParkingSpots();
-		for (Vehicle vehicle : allVehicles) {
-			if (vehicle instanceof Car) {
-				amount++;
-			}
-		}
-		return amount;
+		return getCars().size();
 	}
 
 	public List<Vehicle> getAllVehiclesWithoutParkingSpots() {
