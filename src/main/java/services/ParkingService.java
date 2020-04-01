@@ -3,6 +3,7 @@ package main.java.services;
 import main.java.Carpark;
 import main.java.Floor;
 import main.java.vehicles.Vehicle;
+import main.java.vehicles.VehicleTypes;
 
 public class ParkingService {
 
@@ -44,5 +45,18 @@ public class ParkingService {
 		carpark.putInUnparked(licensePlate, vehicle);
 		floor.getParkingSpot(parkingSpotId).leaving();
 		return true;
+	}
+
+	public int[] getAmountFreeParkingSpots() {
+		int[] amount = new int[2];
+		int amountMotorcycles = 0;
+		int amountCars = 0;
+		for (Floor floor : carpark.getFloors()) {
+			amountCars += floor.getFreeParkingSpots(VehicleTypes.CAR.toString()).size();
+			amountMotorcycles += floor.getFreeParkingSpots(VehicleTypes.MOTORCYCLE.toString()).size();
+		}
+		amount[0] = amountCars;
+		amount[1] = amountMotorcycles;
+		return amount;
 	}
 }

@@ -32,7 +32,7 @@ public class Floor {
 		if (!freeSpots.isEmpty()) {
 			return freeSpots;
 		}
-		throw new RuntimeException("Das Stockwerk #" + floorNumber + " ist vollgeparkt");
+		return new ArrayList<>();
 	}
 
 	public ParkingSpot getFirstFreeParkingSpot(String type) {
