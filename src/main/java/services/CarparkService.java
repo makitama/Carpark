@@ -60,7 +60,7 @@ public class CarparkService {
 
 	public String parkingSpotOfVehicleIfVehicleIsParked(String licenseplate) {
 		int id = parkingSpotService.getParkingSpotOfVehicle(licenseplate);
-		return ((id > 0) ? ", Parkplatz: " + id : ", nicht geparkt");
+		return ((id > 0) ? ", parkt auf Parkplatz #" + id : ", ist nicht geparkt");
 	}
 
 	public void listMotorcycles() {

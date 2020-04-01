@@ -1,23 +1,22 @@
 package main.java.commandos.commandos.informative;
 
 import main.java.commandos.Commando;
-import main.java.services.ParkingSpotService;
+import main.java.services.CarparkService;
 import main.java.services.PrintService;
 
 import java.util.Map;
 
 public class GetParkingSpotOfVehicleCommando implements Commando {
 
-	ParkingSpotService parkingSpotService;
+	CarparkService carparkService;
 
-	public GetParkingSpotOfVehicleCommando(ParkingSpotService parkingSpotService) {
-		this.parkingSpotService = parkingSpotService;
+	public GetParkingSpotOfVehicleCommando(CarparkService carparkService) {
+		this.carparkService = carparkService;
 	}
 
 	@Override
 	public void execute(Map<String, String> parameters) {
-		new PrintService("Das Auto mit dem Kennzeichen: " + parameters.get("LICENSE_PLATE") +
-			  " parkt auf dem Parkplatz #" + parkingSpotService.getParkingSpotOfVehicle(parameters.get("License_Plate")));
+		new PrintService("Das Auto mit dem Kennzeichen: " + parameters.get("LICENSE_PLATE") + carparkService.parkingSpotOfVehicleIfVehicleIsParked(parameters.get("LICENSE_PLATE")));
 	}
 
 	@Override
