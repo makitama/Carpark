@@ -28,6 +28,14 @@ public class Carpark {
 		this(configMap.get("floors"), configMap.get("carParkingSpots"), configMap.get("mcycleParkingSpots"));
 	}
 
+	public String getWelcomeMessage() {
+		String welcomeText = "Herzlich Willkommen im Parkhaus!";
+		welcomeText += "\nBitte geben Sie ihren Befehl im Format <Befehlsname> <Param>=<Paramwert> ein:";
+		welcomeText += "\nMöchten Sie die Application beenden, geben Sie bitte \"exit\" ein";
+		welcomeText += "\nGeben Sie \"help\" ein, um eine Liste der einzelnen Commandos zu erhalten";
+		return welcomeText;
+	}
+
 	public int getAmountVehicles() {
 		return parkedVehicles.size() + unparkedVehicles.size();
 	}
