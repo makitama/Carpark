@@ -19,9 +19,6 @@ public class ParkingSpotTakenCommando implements Commando {
 		ParkingSpotCommandosParamsFactory parkingSpotCommandosParamsFactory = new ParkingSpotCommandosParamsFactory(parameters);
 		parkingService.takeParkingSpot(parkingSpotCommandosParamsFactory.getLicense_plate(), parkingSpotCommandosParamsFactory.getParking_spot_id()
 			  , parkingSpotCommandosParamsFactory.getFloorNr());
-		// fahrzeug muss parken => aus unparked entfernen und in parked setzen
-		// parkplatz auf belegt setzen
-		// ausgabe
 	}
 
 	@Override
