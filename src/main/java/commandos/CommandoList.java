@@ -2,10 +2,7 @@ package main.java.commandos;
 
 import main.java.Carpark;
 import main.java.commandos.commandos.*;
-import main.java.commandos.commandos.informative.GetAmountCarsCommando;
-import main.java.commandos.commandos.informative.ListCarsCommando;
-import main.java.commandos.commandos.informative.ListMotorcyclesCommando;
-import main.java.commandos.commandos.informative.ListVehiclesCommando;
+import main.java.commandos.commandos.informative.*;
 import main.java.services.CarparkService;
 import main.java.services.ParkingService;
 import main.java.services.ParkingSpotService;
@@ -41,6 +38,7 @@ public class CommandoList {
 		commandoMap.put("LIST_MOTORCYCLES", new ListMotorcyclesCommando(carparkService));
 		commandoMap.put("LIST_VEHICLES", new ListVehiclesCommando(carparkService));
 		commandoMap.put("GET_AMOUNT_CARS", new GetAmountCarsCommando(carpark));
+		commandoMap.put("GET_AMOUNT_MOTORCYCLES", new GetAmountMotorcyclesCommando(carpark));
 	}
 
 	public Map<String, Commando> getCommandoMap(){
