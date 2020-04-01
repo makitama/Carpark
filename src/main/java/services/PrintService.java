@@ -19,7 +19,7 @@ public class PrintService {
 	}
 
 	public void printFormattedDescription(String command, String description, String parameters) {
-		System.out.printf("%-32s|%-64s|%-32s\n", command, " " + description, " " + parameters);
+		System.out.printf("%-32s|%-100s|%-32s\n", command, " " + description, " " + parameters);
 	}
 
 	public void printSuccessMessage(String ausgabe) {
