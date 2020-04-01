@@ -16,7 +16,7 @@ public class GetAmountMotorcyclesCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
-		new PrintService(carpark.getMotorcycles().size() + " Motorräder im Parkhaus");
+		new PrintService(carpark.getAmountMotorcycles() + " Motorräder im Parkhaus");
 	}
 
 	@Override

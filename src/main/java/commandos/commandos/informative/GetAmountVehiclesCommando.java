@@ -16,7 +16,7 @@ public class GetAmountVehiclesCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
-		new PrintService("Aktuell sind " + carpark.getAllVehiclesWithoutParkingSpots().size() + " Fahrzeuge im Parkhaus");
+		new PrintService("Aktuell sind " + carpark.getAmountVehicles() + " Fahrzeuge im Parkhaus");
 	}
 
 	@Override
