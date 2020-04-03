@@ -1,4 +1,4 @@
-package main.java.commandos;
+package commandos;
 
 import java.util.Map;
 
@@ -8,6 +8,5 @@ public interface Commando {
 
 	String getDescription();
 
-	//TODO fill in all main.java.commandos!
 	String getParameterList();
 }

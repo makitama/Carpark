@@ -1,9 +1,10 @@
-package main.java.services;
+package services;
 
-import main.java.Carpark;
-import main.java.commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
-import main.java.vehicles.Car;
-import main.java.vehicles.Vehicle;
+
+import carpark.Carpark;
+import commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
+import vehicles.Car;
+import vehicles.Vehicle;
 
 import java.io.IOException;
 import java.util.Map;

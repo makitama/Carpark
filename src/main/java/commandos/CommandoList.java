@@ -1,11 +1,12 @@
-package main.java.commandos;
+package commandos;
 
-import main.java.Carpark;
-import main.java.commandos.commandos.*;
-import main.java.commandos.commandos.informative.*;
-import main.java.services.CarparkService;
-import main.java.services.ParkingService;
-import main.java.services.ParkingSpotService;
+
+import carpark.Carpark;
+import commandos.commandos.*;
+import commandos.commandos.informative.*;
+import services.CarparkService;
+import services.ParkingService;
+import services.ParkingSpotService;
 
 import java.util.HashMap;
 import java.util.Map;

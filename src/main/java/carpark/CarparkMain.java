@@ -1,9 +1,9 @@
-package main.java;
+package carpark;
 
-import main.java.commandos.Commando;
-import main.java.commandos.CommandoList;
-import main.java.filehandling.ReadConfigFile;
-import main.java.services.*;
+import commandos.Commando;
+import commandos.CommandoList;
+import filehandling.ReadConfigFile;
+import services.*;
 
 import java.io.IOException;
 import java.util.Map;

@@ -1,6 +1,6 @@
-package main.java;
+package carpark;
 
-import main.java.vehicles.VehicleTypes;
+import vehicles.VehicleTypes;
 
 import java.util.ArrayList;
 import java.util.List;

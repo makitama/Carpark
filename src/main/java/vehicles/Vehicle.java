@@ -1,4 +1,4 @@
-package main.java.vehicles;
+package vehicles;
 
 public abstract class Vehicle {
 

@@ -1,6 +1,8 @@
-package main.java.parkingStrategies;
+package parkingStrategies;
 
-import main.java.Floor;
+
+import carpark.Floor;
+import carpark.ParkingSpot;
 
 import java.util.List;
 

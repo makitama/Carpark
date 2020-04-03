@@ -1,4 +1,4 @@
-package main.java.filehandling;
+package filehandling;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class ReadConfigFile {
 			properties.put("carParkingSpots", Integer.parseInt(props.getProperty("carParkingSpots")));
 			properties.put("mcycleParkingSpots", Integer.parseInt(props.getProperty("mcycleParkingSpots")));
 		} catch (Exception e) {
-			System.out.println("Exception: " + e);
+			System.err.println("Exception: " + e);
 		} finally {
 			inputStream.close();
 		}

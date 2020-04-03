@@ -1,8 +1,8 @@
-package main.java.commandos.commandos;
+package commandos.commandos;
 
 
-import main.java.commandos.Commando;
-import main.java.services.PrintService;
+import commandos.Commando;
+import services.PrintService;
 
 import java.util.Map;
 

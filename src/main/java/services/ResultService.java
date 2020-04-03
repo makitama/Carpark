@@ -1,6 +1,6 @@
-package main.java.services;
+package services;
 
-import main.java.vehicles.Vehicle;
+import vehicles.Vehicle;
 
 public class ResultService {
 

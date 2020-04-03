@@ -1,8 +1,8 @@
-package main.java.commandos.commandos;
+package commandos.commandos;
 
-import main.java.commandos.Commando;
-import main.java.commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
-import main.java.services.CarparkService;
+import commandos.Commando;
+import commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
+import services.CarparkService;
 
 import java.util.Map;
 

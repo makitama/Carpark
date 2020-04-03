@@ -1,9 +1,9 @@
-package main.java.services;
+package services;
 
-import main.java.Carpark;
-import main.java.Floor;
-import main.java.vehicles.Vehicle;
-import main.java.vehicles.VehicleTypes;
+import carpark.Carpark;
+import carpark.Floor;
+import vehicles.Vehicle;
+import vehicles.VehicleTypes;
 
 public class ParkingService {
 

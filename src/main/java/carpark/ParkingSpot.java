@@ -1,4 +1,4 @@
-package main.java;
+package carpark;
 
 public class ParkingSpot {
 

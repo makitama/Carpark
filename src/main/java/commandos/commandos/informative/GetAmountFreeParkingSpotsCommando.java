@@ -1,8 +1,8 @@
-package main.java.commandos.commandos.informative;
+package commandos.commandos.informative;
 
-import main.java.commandos.Commando;
-import main.java.services.ParkingService;
-import main.java.services.PrintService;
+import commandos.Commando;
+import services.ParkingService;
+import services.PrintService;
 
 import java.util.Map;
 

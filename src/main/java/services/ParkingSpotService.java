@@ -1,9 +1,9 @@
-package main.java.services;
+package services;
 
-import main.java.Carpark;
-import main.java.Floor;
-import main.java.parkingStrategies.ParkingSpotStrategies;
-import main.java.vehicles.Vehicle;
+import carpark.Carpark;
+import carpark.Floor;
+import parkingStrategies.ParkingSpotStrategies;
+import vehicles.Vehicle;
 
 import java.util.List;
 import java.util.Map;

@@ -1,8 +1,8 @@
-package main.java;
+package carpark;
 
-import main.java.vehicles.Car;
-import main.java.vehicles.Motorcycle;
-import main.java.vehicles.Vehicle;
+import vehicles.Car;
+import vehicles.Motorcycle;
+import vehicles.Vehicle;
 
 import java.util.ArrayList;
 import java.util.HashMap;

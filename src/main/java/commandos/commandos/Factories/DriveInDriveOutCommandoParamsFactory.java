@@ -1,4 +1,4 @@
-package main.java.commandos.commandos.Factories;
+package commandos.commandos.Factories;
 
 import java.util.Map;
 

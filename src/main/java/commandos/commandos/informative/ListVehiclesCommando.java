@@ -1,7 +1,7 @@
-package main.java.commandos.commandos.informative;
+package commandos.commandos.informative;
 
-import main.java.commandos.Commando;
-import main.java.services.CarparkService;
+import commandos.Commando;
+import services.CarparkService;
 
 import java.io.IOException;
 import java.util.Map;

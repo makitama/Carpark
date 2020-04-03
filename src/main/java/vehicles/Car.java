@@ -1,6 +1,6 @@
-package main.java.vehicles;
+package vehicles;
 
-import main.java.commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
+import commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
 
 public class Car extends Vehicle {
 

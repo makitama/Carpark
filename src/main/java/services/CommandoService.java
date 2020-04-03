@@ -1,6 +1,6 @@
-package main.java.services;
+package services;
 
-import main.java.commandos.Commando;
+import commandos.Commando;
 
 import java.util.HashMap;
 import java.util.Map;

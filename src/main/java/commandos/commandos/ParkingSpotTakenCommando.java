@@ -1,8 +1,8 @@
-package main.java.commandos.commandos;
+package commandos.commandos;
 
-import main.java.commandos.Commando;
-import main.java.commandos.commandos.Factories.ParkingSpotCommandosParamsFactory;
-import main.java.services.ParkingService;
+import commandos.Commando;
+import commandos.commandos.Factories.ParkingSpotCommandosParamsFactory;
+import services.ParkingService;
 
 import java.util.Map;
 
