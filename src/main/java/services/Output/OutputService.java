@@ -4,15 +4,7 @@ import java.io.IOException;
 
 public abstract class OutputService {
 
-	public String getActualMethodName() {
-		int methodenebene = 2;
-		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[methodenebene];
-		return stackTraceElement.getMethodName();
-
-	}
-
 	public String getActualClassName() {
-		//Todo: print: Class classname => only classname!
 		int methodenebene = 2;
 		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[methodenebene];
 		String[] className = stackTraceElement.getClassName().split("\\.");

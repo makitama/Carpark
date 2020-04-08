@@ -105,15 +105,12 @@ public class CarparkService {
 			}
 		}
 		carpark.putInUnparked(vehicle.getLicenseplate(), vehicle);
-		outputService.printSuccessMessage(outputService.getActualMethodName());
 	}
 
-	public String driveOut(DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory, OutputService outputService) throws VehicleNotInsideCarparkException, VehicleInFalseStateException {
+	public void driveOut(DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory, OutputService outputService) throws VehicleNotInsideCarparkException, VehicleInFalseStateException {
 		for (Vehicle vehicle1 : carpark.getUnparkedVehicles().values()) {
 			if (vehicle1.getLicenseplate().equalsIgnoreCase(driveInDriveOutCommandoParamsFactory.getLicense_plate())) {
 				carpark.deleteCar(driveInDriveOutCommandoParamsFactory.getLicense_plate());
-				//outputService.printSuccessMessage(outputService.getActualMethodName());
-				return outputService.getActualMethodName();
 			}
 		}
 		for (Vehicle vehicle1 : carpark.getParkedVehicles().values()) {
