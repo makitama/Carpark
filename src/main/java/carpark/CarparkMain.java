@@ -2,8 +2,7 @@ package carpark;
 
 import commandos.Commando;
 import commandos.CommandoList;
-import filehandling.ReadConfigFile;
-import services.*;
+import services.CommandoService;
 
 import java.io.IOException;
 import java.util.Map;
@@ -13,19 +12,10 @@ public class CarparkMain {
 
 	private static final String nextCommand = "Und dann?";
 
-	public static CommandoList initializing() throws IOException {
-		ReadConfigFile properties = new ReadConfigFile();
-		Carpark carpark = new Carpark(properties.getPropertyValues());
-		new PrintService(carpark.getWelcomeMessage());
-
-		ParkingSpotService parkingSpotService = new ParkingSpotService(carpark);
-		CarparkService carparkService = new CarparkService(carpark, parkingSpotService);
-		ParkingService parkingService = new ParkingService(carpark, carparkService);
-		return new CommandoList(carpark, carparkService, parkingService, parkingSpotService);
-	}
-
 	public static void main(String[] args) throws IOException {
-		CommandoList commandoList = initializing();
+		//todo refactor name of class.
+		Initialize initialize = new Initialize();
+		CommandoList commandoList = initialize.getCommandoList();
 		Map<String, Commando> commandos = commandoList.getCommandoMap();
 		CommandoService commandoService = new CommandoService();
 		Scanner scanner = new Scanner(System.in);
