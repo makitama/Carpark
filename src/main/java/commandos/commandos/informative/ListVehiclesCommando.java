@@ -3,6 +3,7 @@ package commandos.commandos.informative;
 import carpark.Carpark;
 import commandos.Commando;
 import commandos.commandos.Factories.ListCommandoParamsFactory;
+import exceptions.NoParkingSpotOfVehicleFoundException;
 import services.CarparkService;
 import vehicles.Vehicle;
 
@@ -20,7 +21,7 @@ public class ListVehiclesCommando implements Commando {
 	}
 
 	@Override
-	public void execute(Map<String, String> parameters) {
+	public void execute(Map<String, String> parameters) throws NoParkingSpotOfVehicleFoundException {
 		ListCommandoParamsFactory paramsFactory = new ListCommandoParamsFactory(parameters);
 		if (paramsFactory.isEmpty()) {
 			for (Vehicle vehicle : carpark.getAllVehiclesWithoutParkingSpots()) {
@@ -32,7 +33,7 @@ public class ListVehiclesCommando implements Commando {
 					PRINT_TO_FILE_SERVICE.print(paramsFactory.getFile(),
 						  vehicle.toString() + carparkService.parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 				}
-			} catch (IOException ex) {
+			} catch (IOException | NoParkingSpotOfVehicleFoundException ex) {
 				System.err.println(ex.getMessage());
 			}
 		}

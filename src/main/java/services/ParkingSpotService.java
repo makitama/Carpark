@@ -2,6 +2,7 @@ package services;
 
 import carpark.Carpark;
 import carpark.Floor;
+import exceptions.NoParkingSpotOfVehicleFoundException;
 import parkingStrategies.ParkingSpotStrategies;
 import vehicles.Vehicle;
 
@@ -22,14 +23,13 @@ public class ParkingSpotService {
 		return parkingStrategy.getParkingSpot(floors, type);
 	}
 
-	public int getParkingSpotOfVehicle(String licensePlate) {
+	public int getParkingSpotOfVehicle(String licensePlate) throws NoParkingSpotOfVehicleFoundException {
 		for (Map.Entry parkedVehicle : carpark.getParkedVehicles().entrySet()) {
 			if (((Vehicle) parkedVehicle.getValue()).getLicenseplate().equalsIgnoreCase(licensePlate)) {
 				return (int) parkedVehicle.getKey();
 			}
 		}
-		//todo keine RuntimeException!
-		return 0;
+		throw new NoParkingSpotOfVehicleFoundException();
 	}
 
 }

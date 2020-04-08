@@ -2,6 +2,7 @@ package commandos.commandos.informative;
 
 import commandos.Commando;
 import commandos.commandos.Factories.GetParkingSpotOfVehicleCommandoParamsFactory;
+import exceptions.NoParkingSpotOfVehicleFoundException;
 import services.CarparkService;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ public class GetParkingSpotOfVehicleCommando implements Commando {
 	}
 
 	@Override
-	public void execute(Map<String, String> parameters) {
+	public void execute(Map<String, String> parameters) throws NoParkingSpotOfVehicleFoundException {
 		GetParkingSpotOfVehicleCommandoParamsFactory paramsFactory = new GetParkingSpotOfVehicleCommandoParamsFactory(parameters);
 		String output = "Das Auto mit dem Kennzeichen: " + parameters.get("LICENSE_PLATE") + carparkService.parkingSpotOfVehicleIfVehicleIsParked(parameters.get("LICENSE_PLATE"));
 		if (paramsFactory.isEmpty()) {

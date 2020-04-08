@@ -2,6 +2,8 @@ package commandos.commandos;
 
 import commandos.Commando;
 import commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
+import exceptions.VehicleInFalseStateException;
+import exceptions.VehicleNotInsideCarparkException;
 import services.CarparkService;
 
 import java.util.Map;
@@ -15,9 +17,10 @@ public class DriveOutCommando implements Commando {
 	}
 
 	@Override
-	public void execute(Map<String, String> parameters) {
+	public void execute(Map<String, String> parameters) throws VehicleNotInsideCarparkException, VehicleInFalseStateException {
 		DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory = new DriveInDriveOutCommandoParamsFactory(parameters);
-		carparkService.driveOut(driveInDriveOutCommandoParamsFactory, PRINT_TO_CONSOLE_SERVICE);
+		String success = carparkService.driveOut(driveInDriveOutCommandoParamsFactory, PRINT_TO_CONSOLE_SERVICE);
+		PRINT_TO_CONSOLE_SERVICE.printSuccessMessage(success);
 		DATABASE_SERVICE.deleteFromDatabase(driveInDriveOutCommandoParamsFactory.getLicense_plate());
 	}
 
