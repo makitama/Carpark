@@ -2,7 +2,6 @@ package commandos.commandos.informative;
 
 import commandos.Commando;
 import services.ParkingService;
-import services.PrintService;
 
 import java.util.Map;
 
@@ -16,7 +15,7 @@ public class GetAmountFreeParkingSpotsCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
-		new PrintService("Aktuell sind noch " + parkingService.getAmountFreeParkingSpots()[0] + " Autoparkplätze und " +
+		PRINT_TO_CONSOLE_SERVICE.print("Aktuell sind noch " + parkingService.getAmountFreeParkingSpots()[0] + " Autoparkplätze und " +
 			  parkingService.getAmountFreeParkingSpots()[1] + " Motorradparkplätze verfügbar");
 	}
 

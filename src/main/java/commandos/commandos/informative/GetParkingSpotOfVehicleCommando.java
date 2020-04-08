@@ -2,7 +2,6 @@ package commandos.commandos.informative;
 
 import commandos.Commando;
 import services.CarparkService;
-import services.PrintService;
 
 import java.util.Map;
 
@@ -16,7 +15,7 @@ public class GetParkingSpotOfVehicleCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
-		new PrintService("Das Auto mit dem Kennzeichen: " + parameters.get("LICENSE_PLATE") + carparkService.parkingSpotOfVehicleIfVehicleIsParked(parameters.get("LICENSE_PLATE")));
+		PRINT_TO_CONSOLE_SERVICE.print("Das Auto mit dem Kennzeichen: " + parameters.get("LICENSE_PLATE") + carparkService.parkingSpotOfVehicleIfVehicleIsParked(parameters.get("LICENSE_PLATE")));
 	}
 
 	@Override
