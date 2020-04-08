@@ -17,7 +17,8 @@ public class DriveOutCommando implements Commando {
 	@Override
 	public void execute(Map<String, String> parameters) {
 		DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory = new DriveInDriveOutCommandoParamsFactory(parameters);
-		carparkService.driveOut(driveInDriveOutCommandoParamsFactory);
+		carparkService.driveOut(driveInDriveOutCommandoParamsFactory, PRINT_TO_CONSOLE_SERVICE);
+		DATABASE_SERVICE.deleteFromDatabase(driveInDriveOutCommandoParamsFactory.getLicense_plate());
 	}
 
 	@Override

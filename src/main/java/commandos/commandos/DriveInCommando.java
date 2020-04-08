@@ -22,7 +22,8 @@ public class DriveInCommando implements Commando {
 		for (VehicleTypes possibleVehicleType : VehicleTypes.values()) {
 			if (possibleVehicleType.getValue().equalsIgnoreCase(driveInDriveOutCommandoParamsFactory.getType())) {
 				Vehicle vehicle = possibleVehicleType.createNewVehicle(driveInDriveOutCommandoParamsFactory);
-				carparkService.driveIn(vehicle);
+				carparkService.driveIn(vehicle, PRINT_TO_CONSOLE_SERVICE);
+				DATABASE_SERVICE.saveToDatabase(driveInDriveOutCommandoParamsFactory);
 			}
 		}
 		//todo exception fahrzeug kann net im parkhaus parken

@@ -17,8 +17,11 @@ public class ParkingSpotLeftCommando implements Commando {
 	@Override
 	public void execute(Map<String, String> parameters) {
 		ParkingSpotCommandosParamsFactory parkingSpotCommandosParamsFactory = new ParkingSpotCommandosParamsFactory(parameters);
-		parkingService.leaveParkingSpot(parkingSpotCommandosParamsFactory.getLicense_plate(), parkingSpotCommandosParamsFactory.getParking_spot_id()
-			  , parkingSpotCommandosParamsFactory.getFloorNr());
+		if (parkingService.leaveParkingSpot(parkingSpotCommandosParamsFactory.getLicense_plate(),
+			  parkingSpotCommandosParamsFactory.getParking_spot_id(), parkingSpotCommandosParamsFactory.getFloorNr())) {
+			DATABASE_SERVICE.unparkInDatabase(parkingSpotCommandosParamsFactory);
+			PRINT_TO_CONSOLE_SERVICE.printSuccessMessage("Class " + PRINT_TO_CONSOLE_SERVICE.getActualClassName());
+		}
 	}
 
 	@Override
