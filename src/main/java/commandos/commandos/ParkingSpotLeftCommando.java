@@ -20,7 +20,7 @@ public class ParkingSpotLeftCommando implements Commando {
 		if (parkingService.leaveParkingSpot(parkingSpotCommandoParamsFactory.getLicense_plate(),
 			  parkingSpotCommandoParamsFactory.getParking_spot_id(), parkingSpotCommandoParamsFactory.getFloorNr())) {
 			DATABASE_SERVICE.unparkInDatabase(parkingSpotCommandoParamsFactory);
-			PRINT_TO_CONSOLE_SERVICE.printSuccessMessage("Class " + PRINT_TO_CONSOLE_SERVICE.getActualClassName());
+			PRINT_TO_CONSOLE_SERVICE.printSuccessMessage(PRINT_TO_CONSOLE_SERVICE.getActualClassName());
 		}
 	}
 

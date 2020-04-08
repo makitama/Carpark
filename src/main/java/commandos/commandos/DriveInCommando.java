@@ -23,6 +23,7 @@ public class DriveInCommando implements Commando {
 			if (possibleVehicleType.getValue().equalsIgnoreCase(driveInDriveOutCommandoParamsFactory.getType())) {
 				Vehicle vehicle = possibleVehicleType.createNewVehicle(driveInDriveOutCommandoParamsFactory);
 				carparkService.driveIn(vehicle, PRINT_TO_CONSOLE_SERVICE);
+				PRINT_TO_CONSOLE_SERVICE.printSuccessMessage(PRINT_TO_CONSOLE_SERVICE.getActualClassName());
 				DATABASE_SERVICE.saveToDatabase(driveInDriveOutCommandoParamsFactory);
 			}
 		}

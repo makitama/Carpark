@@ -19,8 +19,8 @@ public class DriveOutCommando implements Commando {
 	@Override
 	public void execute(Map<String, String> parameters) throws VehicleNotInsideCarparkException, VehicleInFalseStateException {
 		DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory = new DriveInDriveOutCommandoParamsFactory(parameters);
-		String success = carparkService.driveOut(driveInDriveOutCommandoParamsFactory, PRINT_TO_CONSOLE_SERVICE);
-		PRINT_TO_CONSOLE_SERVICE.printSuccessMessage(success);
+		carparkService.driveOut(driveInDriveOutCommandoParamsFactory, PRINT_TO_CONSOLE_SERVICE);
+		PRINT_TO_CONSOLE_SERVICE.printSuccessMessage(PRINT_TO_CONSOLE_SERVICE.getActualClassName());
 		DATABASE_SERVICE.deleteFromDatabase(driveInDriveOutCommandoParamsFactory.getLicense_plate());
 	}
 
