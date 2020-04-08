@@ -2,6 +2,7 @@ package commandos.commandos.informative;
 
 import carpark.Carpark;
 import commandos.Commando;
+import commandos.commandos.Factories.ListCommandoParamsFactory;
 import services.CarparkService;
 import vehicles.Car;
 import vehicles.Vehicle;
@@ -30,7 +31,8 @@ public class ListCarsCommando implements Commando {
 				PRINT_TO_CONSOLE_SERVICE.printErrorMessage(ex.getMessage());
 			}
 		}*/
-		if (parameters.isEmpty()) {
+		ListCommandoParamsFactory paramsFactory = new ListCommandoParamsFactory(parameters);
+		if (paramsFactory.isEmpty()) {
 			for (Vehicle vehicle : carpark.getCars()) {
 				if (vehicle instanceof Car) {
 					PRINT_TO_CONSOLE_SERVICE.print(vehicle.toString() + carparkService.parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
@@ -40,7 +42,7 @@ public class ListCarsCommando implements Commando {
 			try {
 				for (Vehicle vehicle : carpark.getCars()) {
 					if (vehicle instanceof Car) {
-						PRINT_TO_FILE_SERVICE.print(parameters.get("FILE"),
+						PRINT_TO_FILE_SERVICE.print(paramsFactory.getFile(),
 							  vehicle.toString() + carparkService.parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 					}
 				}

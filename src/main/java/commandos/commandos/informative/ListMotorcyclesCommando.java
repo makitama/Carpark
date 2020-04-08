@@ -2,6 +2,7 @@ package commandos.commandos.informative;
 
 import carpark.Carpark;
 import commandos.Commando;
+import commandos.commandos.Factories.ListCommandoParamsFactory;
 import services.CarparkService;
 import vehicles.Vehicle;
 
@@ -20,14 +21,15 @@ public class ListMotorcyclesCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
-		if (parameters.isEmpty()) {
-			for (Vehicle vehicle : carpark.getMotorcycles()) {
+		ListCommandoParamsFactory paramsFactory = new ListCommandoParamsFactory(parameters);
+		if (paramsFactory.isEmpty()) {
+			for (Vehicle vehicle : carpark.getCars()) {
 				PRINT_TO_CONSOLE_SERVICE.print(vehicle.toString() + carparkService.parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 			}
 		} else {
 			try {
 				for (Vehicle vehicle : carpark.getMotorcycles()) {
-					PRINT_TO_FILE_SERVICE.print(parameters.get("FILE"),
+					PRINT_TO_FILE_SERVICE.print(paramsFactory.getFile(),
 						  vehicle.toString() + carparkService.parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 				}
 			} catch (IOException ex) {
