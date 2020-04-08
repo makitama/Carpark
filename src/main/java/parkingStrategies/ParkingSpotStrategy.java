@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface ParkingSpotStrategy {
 
-	int getParkingSpot(List<Floor> floors, String type);
+	String getParkingSpot(List<Floor> floors, String type);
+
+	String getParkingString(Floor floor, ParkingSpot parkingSpot);
 
 }

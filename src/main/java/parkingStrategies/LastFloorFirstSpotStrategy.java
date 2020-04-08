@@ -9,14 +9,17 @@ import java.util.List;
 public class LastFloorFirstSpotStrategy implements ParkingSpotStrategy {
 
 	@Override
-	public int getParkingSpot(List<Floor> floors, String type) {
+	public String getParkingSpot(List<Floor> floors, String type) {
 		for (int i = floors.size() - 1; i >= 0; i--) {
 			if (floors.get(i).getFirstFreeParkingSpot(type) != null) {
-				return floors.get(i).getFirstFreeParkingSpot(type).getParkingSpotId();
-				//todo stockwerknummer?
+				return getParkingString(floors.get(i), floors.get(i).getFirstFreeParkingSpot(type));
 			}
 		}
-		//todo throw exception
-		return 0;
+		return "Kein Parkplatz frei";
+	}
+
+	@Override
+	public String getParkingString(Floor floor, ParkingSpot parkingSpot) {
+		return "Stockwerk #" + floor.getFloorNumber() + ", Parkplatz #" + parkingSpot.getParkingSpotId();
 	}
 }

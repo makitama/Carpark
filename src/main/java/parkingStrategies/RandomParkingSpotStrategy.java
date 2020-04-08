@@ -10,15 +10,19 @@ import java.util.List;
 public class RandomParkingSpotStrategy implements ParkingSpotStrategy {
 
 	@Override
-	public int getParkingSpot(List<Floor> floors, String type) {
-		Collections.shuffle(floors);
-		List<ParkingSpot> parkingSpots = floors.get(0).getFreeParkingSpots(type);
-		Collections.shuffle(parkingSpots);
-		if (parkingSpots.isEmpty()) {
-			return getParkingSpot(floors, type);
-		} else {
-			// todo rekursion oder schleife??
-			return parkingSpots.get(0).getParkingSpotId();
+	public String getParkingSpot(List<Floor> floors, String type) {
+		List<ParkingSpot> parkingSpots = new ArrayList<>();
+		//todo überprüfen ob es überhaupt freie plätze gibt vorher => weil wegen rekursion/schleife!
+		while (parkingSpots.isEmpty()) {
+			Collections.shuffle(floors);
+			parkingSpots = floors.get(0).getFreeParkingSpots(type);
+			Collections.shuffle(parkingSpots);
 		}
+		return getParkingString(floors.get(0), parkingSpots.get(0));
+	}
+
+	@Override
+	public String getParkingString(Floor floor, ParkingSpot parkingSpot) {
+		return "Stockwerk #" + floor.getFloorNumber() + ", Parkplatz #" + parkingSpot.getParkingSpotId();
 	}
 }

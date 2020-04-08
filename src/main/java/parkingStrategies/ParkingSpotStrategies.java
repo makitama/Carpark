@@ -18,7 +18,7 @@ public enum ParkingSpotStrategies {
 		this.parkingSpotStrategy = parkingSpotStrategy;
 	}
 
-	public void getParkingSpot(List<Floor> floors, String type){
-		parkingSpotStrategy.getParkingSpot(floors, type);
+	public String getParkingSpot(List<Floor> floors, String type) {
+		return parkingSpotStrategy.getParkingSpot(floors, type);
 	}
 }
