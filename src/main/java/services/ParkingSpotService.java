@@ -16,13 +16,13 @@ public class ParkingSpotService {
 		this.carpark = carpark;
 	}
 
-	public void getParkingSpotSuggestion(String type, String strategy){
+	public String getParkingSpotSuggestion(String type, String strategy) {
 		List<Floor> floors = carpark.getFloors();
 		ParkingSpotStrategies parkingStrategy = ParkingSpotStrategies.valueOf(strategy);
-		parkingStrategy.getParkingSpot(floors, type);
+		return parkingStrategy.getParkingSpot(floors, type);
 	}
 
-	public int getParkingSpotOfVehicle(String licensePlate){
+	public int getParkingSpotOfVehicle(String licensePlate) {
 		for (Map.Entry parkedVehicle : carpark.getParkedVehicles().entrySet()) {
 			if (((Vehicle) parkedVehicle.getValue()).getLicenseplate().equalsIgnoreCase(licensePlate)) {
 				return (int) parkedVehicle.getKey();

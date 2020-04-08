@@ -3,6 +3,7 @@ package services;
 
 import carpark.Carpark;
 import commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
+import services.Output.OutputService;
 import vehicles.Car;
 import vehicles.Vehicle;
 
@@ -41,19 +42,19 @@ public class CarparkService {
 		throw new RuntimeException("Kein ungeparktes passendes Fahrzeug gefunden");
 	}
 
-	public void listCars() {
+	public void listCars(OutputService outputService) {
 		for (Vehicle vehicle : carpark.getCars()) {
 			if (vehicle instanceof Car) {
-				new PrintService(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
+				outputService.print(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 			}
 		}
 		//TODO was wenn keine autos geparkt sind => ausgabe meldung
 	}
 
-	public void listCars(String file) throws IOException {
+	public void listCars(String file, OutputService outputService) throws IOException {
 		for (Vehicle vehicle : carpark.getCars()) {
 			if (vehicle instanceof Car) {
-				new PrintService().printToFile(file, vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
+				outputService.print(file, vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 			}
 		}
 		//TODO was wenn keine autos geparkt sind => ausgabe meldung
@@ -64,54 +65,52 @@ public class CarparkService {
 		return ((id > 0) ? ", parkt auf Parkplatz #" + id : ", ist nicht geparkt");
 	}
 
-	public void listMotorcycles() {
+	public void listMotorcycles(OutputService outputService) {
 		for (Vehicle vehicle : carpark.getMotorcycles()) {
-			new PrintService(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
+			outputService.printToConsole(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 		}
 		//TODO was wenn keine motoräder da sind. => Ausgabe meldung
 	}
 
-	public void listMotorcycles(String file) throws IOException {
+	public void listMotorcycles(String file, OutputService outputService) throws IOException {
 		for (Vehicle vehicle : carpark.getMotorcycles()) {
-			(new PrintService()).printToFile(file, vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
+			outputService.print(file, vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 		}
 		//TODO was wenn keine motoräder da sind. => Ausgabe meldung
 	}
 
 
-	public void listVehicles() {
+	public void listVehicles(OutputService outputService) {
 		for (Vehicle vehicle : carpark.getAllVehiclesWithoutParkingSpots()) {
-			new PrintService(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
+			outputService.printToConsole(vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 		}
 		//TODO was wenn keine fahrzeuge da sind => Ausgabe meldung
 	}
 
-	public void listVehicles(String file) throws IOException {
+	public void listVehicles(String file, OutputService outputService) throws IOException {
 		for (Vehicle vehicle : carpark.getAllVehiclesWithoutParkingSpots()) {
-			(new PrintService()).printToFile(file, vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
+			outputService.print(file, vehicle.toString() + parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
 		}
 		//TODO was wenn keine fahrzeuge da sind => Ausgabe meldung
 	}
 
 	//TODO DriveIn überarbeiten!
-	public void driveIn(Vehicle vehicle) {
+	public void driveIn(Vehicle vehicle, OutputService outputService) {
 		for (Vehicle vehicle1 : carpark.getAllVehiclesWithoutParkingSpots()) {
 			if (vehicle1.getLicenseplate().equalsIgnoreCase(vehicle.getLicenseplate())) {
 				throw new RuntimeException("Ein Fahrzeug mit diesem Kennzeichen befindet sich bereits im Parkhaus");
 			}
 		}
 		carpark.putInUnparked(vehicle.getLicenseplate(), vehicle);
-		PrintService printservice = new PrintService();
-		printservice.printSuccessMessage(printservice.getActualMethodName());
+		outputService.printSuccessMessage(outputService.getActualMethodName());
 	}
 
-	public void driveOut(DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory) {
+	public void driveOut(DriveInDriveOutCommandoParamsFactory driveInDriveOutCommandoParamsFactory, OutputService outputService) {
 		for (Vehicle vehicle1 : carpark.getUnparkedVehicles().values()) {
 			if (vehicle1.getLicenseplate().equalsIgnoreCase(driveInDriveOutCommandoParamsFactory.getLicense_plate())) {
-				//todo reicht hier das löschen aus der hashmap aus um das fahrzeug an sich zu löschen?
+				//todo printservice in überklasse
 				carpark.deleteCar(driveInDriveOutCommandoParamsFactory.getLicense_plate());
-				PrintService printservice = new PrintService();
-				printservice.printSuccessMessage(printservice.getActualMethodName());
+				outputService.printSuccessMessage(outputService.getActualMethodName());
 			}
 		}
 		//todo print message kein auto gefunden!

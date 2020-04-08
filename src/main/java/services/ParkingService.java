@@ -15,22 +15,17 @@ public class ParkingService {
 		this.carparkService = carparkService;
 	}
 
-	public void takeParkingSpot(String licensePlate, int parkingSpotId, int floorNr) {
-		if (isParkingSuccessful(parkingSpotId, carparkService.getUnparkedVehicle(licensePlate), licensePlate, carpark.getFloor(floorNr))) {
-			PrintService printService = new PrintService();
-			printService.printSuccessMessage(printService.getActualMethodName());
-		}
+	public boolean takeParkingSpot(String licensePlate, int parkingSpotId, int floorNr) {
+		return isParkingSuccessful(parkingSpotId, carparkService.getUnparkedVehicle(licensePlate), licensePlate, carpark.getFloor(floorNr));
 	}
 
-	public void leaveParkingSpot(String licensePlate, int newParkingSpotId, int floorNr) {
+	public boolean leaveParkingSpot(String licensePlate, int ParkingSpotId, int floorNr) {
 		ResultService vehicle = carparkService.getParkedVehicle(licensePlate);
 		Floor floor = carpark.getFloor(floorNr);
-		if (vehicle.getParkingSpotId() == newParkingSpotId) {
-			if (unparking(newParkingSpotId, vehicle.getVehicle(), licensePlate, floor)) {
-				PrintService printService = new PrintService();
-				printService.printSuccessMessage(printService.getActualMethodName());
-			}
+		if (vehicle.getParkingSpotId() == ParkingSpotId) {
+			return unparking(ParkingSpotId, vehicle.getVehicle(), licensePlate, floor);
 		}
+		return false;
 	}
 
 	public Boolean isParkingSuccessful(int parkingSpotId, Vehicle vehicle, String licensePlate, Floor floor) {
