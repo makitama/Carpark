@@ -3,6 +3,7 @@ package carpark;
 import commandos.Commando;
 import commandos.CommandoList;
 import services.CommandoService;
+import services.Output.PrintToConsoleService;
 
 import java.io.IOException;
 import java.util.Map;
@@ -15,6 +16,7 @@ public class CarparkMain {
 	public static void main(String[] args) throws IOException {
 		//todo refactor name of class.
 		Initialize initialize = new Initialize();
+		PrintToConsoleService printService = new PrintToConsoleService();
 		CommandoList commandoList = initialize.getCommandoList();
 		Map<String, Commando> commandos = commandoList.getCommandoMap();
 		CommandoService commandoService = new CommandoService();
@@ -27,10 +29,10 @@ public class CarparkMain {
 				commandoService.checkIfCommandoExists(commandos);
 				String commando = commandoService.getCommando();
 				commandos.get(commando).execute(commandoService.getParameters());
-				System.out.println(nextCommand);
+				printService.print(nextCommand);
 			} catch (Exception ex) {
-				System.out.println(ex.getMessage());
-				System.out.println(nextCommand);
+				printService.printErrorMessage(ex.getMessage());
+				printService.print(nextCommand);
 			}
 		} while(true);
 	}

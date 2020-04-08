@@ -35,9 +35,9 @@ public class CommandoList {
 		commandoMap.put("PARKING_SPOT_LEFT", new ParkingSpotLeftCommando(parkingService));
 		commandoMap.put("PARKING_SPOT_TAKEN", new ParkingSpotTakenCommando(parkingService));
 		commandoMap.put("HELP", new HelpCommando(commandoMap));
-		commandoMap.put("LIST_CARS", new ListCarsCommando(carparkService));
-		commandoMap.put("LIST_MOTORCYCLES", new ListMotorcyclesCommando(carparkService));
-		commandoMap.put("LIST_VEHICLES", new ListVehiclesCommando(carparkService));
+		commandoMap.put("LIST_CARS", new ListCarsCommando(carparkService, carpark));
+		commandoMap.put("LIST_MOTORCYCLES", new ListMotorcyclesCommando(carparkService, carpark));
+		commandoMap.put("LIST_VEHICLES", new ListVehiclesCommando(carparkService, carpark));
 		commandoMap.put("GET_AMOUNT_CARS", new GetAmountCarsCommando(carpark));
 		commandoMap.put("GET_AMOUNT_MOTORCYCLES", new GetAmountMotorcyclesCommando(carpark));
 		commandoMap.put("GET_PARKING_SPOT_OF_VEHICLE", new GetParkingSpotOfVehicleCommando(carparkService));

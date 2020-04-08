@@ -1,9 +1,14 @@
 package exceptions;
 
-public class CommandNotFoundException {
+public class CommandNotFoundException extends Exception {
 
 	public CommandNotFoundException(String commando) {
-		//todo fill in command not found exception
+		super("Das Commando " + commando + " existiert nicht. Bitte versuchen Sie es erneut");
 	}
+
+	public CommandNotFoundException() {
+
+	}
+
 
 }
