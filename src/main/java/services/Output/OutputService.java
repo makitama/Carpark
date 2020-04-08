@@ -12,9 +12,9 @@ public abstract class OutputService {
 	}
 
 	public String getActualClassName() {
+		//Todo: print: Class classname => only classname!
 		int methodenebene = 2;
 		StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[methodenebene];
-		//todo testen
 		String[] className = stackTraceElement.getClassName().split("\\.");
 		return className[className.length - 1];
 	}
@@ -29,6 +29,6 @@ public abstract class OutputService {
 	}
 
 
-	public void printToConsole(String ausgabe) {
+	public void printToConsole(String output) {
 	}
 }

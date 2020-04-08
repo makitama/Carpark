@@ -2,23 +2,23 @@ package services.Output;
 
 public class PrintToConsoleService extends OutputService {
 
-	public PrintToConsoleService(String ausgabe) {
-		printToConsole(ausgabe);
+	public PrintToConsoleService(String output) {
+		printToConsole(output);
 	}
 
 	public PrintToConsoleService() {
 	}
 
-	public void printErrorMessage(String ausgabe) {
-		System.err.println(ausgabe);
+	public void printErrorMessage(String output) {
+		System.err.println(output);
 	}
 
-	public void printSuccessMessage(String ausgabe) {
-		printToConsole(ausgabe + " erfolgreich");
+	public void printSuccessMessage(String output) {
+		printToConsole(output + " erfolgreich");
 	}
 
-	public void printToConsole(String ausgabe) {
-		System.out.println(ausgabe);
+	public void printToConsole(String output) {
+		System.out.println(output);
 	}
 
 	public void printFormattedDescription(String command, String description, String parameters) {
@@ -26,8 +26,8 @@ public class PrintToConsoleService extends OutputService {
 	}
 
 
-	public void print(String ausgabe) {
-		System.out.println(ausgabe);
+	public void print(String output) {
+		System.out.println(output);
 	}
 
 }

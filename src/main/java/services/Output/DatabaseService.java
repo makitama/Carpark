@@ -1,7 +1,7 @@
 package services.Output;
 
 import commandos.commandos.Factories.DriveInDriveOutCommandoParamsFactory;
-import commandos.commandos.Factories.ParkingSpotCommandosParamsFactory;
+import commandos.commandos.Factories.ParkingSpotCommandoParamsFactory;
 
 import java.sql.*;
 
@@ -66,7 +66,7 @@ public class DatabaseService extends OutputService {
 			String query =
 				  "INSERT INTO vehicles (v_type, color, licenseplate, " + columns + ", parked) " +
 						"VALUES ('" + paramsFactory.getType() + "', '" + paramsFactory.getColor() + "', '"
-						+ paramsFactory.getLicense_plate() + "', '" + values + "', " + UNPARKED + ")";
+					    + paramsFactory.getLicense_plate() + "', '" + values + "', " + UNPARKED + ")";
 
 			Statement stmt = connection.createStatement();
 			stmt.execute(query);
@@ -76,7 +76,7 @@ public class DatabaseService extends OutputService {
 		}
 	}
 
-	public void parkInDatabase(ParkingSpotCommandosParamsFactory paramsFactory) {
+	public void parkInDatabase(ParkingSpotCommandoParamsFactory paramsFactory) {
 		try (Connection connection = DriverManager.getConnection(url, user, password)) {
 			String query = "UPDATE vehicles SET parked =" + PARKED + " WHERE licenseplate = '" + paramsFactory.getLicense_plate() + "'";
 			Statement stmt = connection.createStatement();
@@ -92,7 +92,7 @@ public class DatabaseService extends OutputService {
 		}
 	}
 
-	public void unparkInDatabase(ParkingSpotCommandosParamsFactory paramsFactory) {
+	public void unparkInDatabase(ParkingSpotCommandoParamsFactory paramsFactory) {
 		try (Connection connection = DriverManager.getConnection(url, user, password)) {
 			String query = "UPDATE vehicles SET parked=" + UNPARKED + " WHERE licenseplate='" + paramsFactory.getLicense_plate() + "'";
 			Statement stmt = connection.createStatement();

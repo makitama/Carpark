@@ -1,6 +1,7 @@
 package services;
 
 import commandos.Commando;
+import exceptions.CommandNotFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,9 +32,9 @@ public class CommandoService {
 		}
 	}
 
-	public void checkIfCommandoExists(Map<String, Commando> commandos) {
+	public void checkIfCommandoExists(Map<String, Commando> commandos) throws CommandNotFoundException {
 		if (!commandos.containsKey(commando)) {
-			//todo throw new CommandNotFoundException(commando);
+			throw new CommandNotFoundException(commando);
 		}
 	}
 
