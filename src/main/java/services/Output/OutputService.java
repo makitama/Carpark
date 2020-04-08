@@ -1,4 +1,6 @@
-package Output;
+package services.Output;
+
+import java.io.IOException;
 
 public abstract class OutputService {
 
@@ -17,4 +19,16 @@ public abstract class OutputService {
 		return className[className.length - 1];
 	}
 
+	public void print(String output) {
+	}
+
+	public void print(String file, String output) throws IOException {
+	}
+
+	public void printSuccessMessage(String output) {
+	}
+
+
+	public void printToConsole(String ausgabe) {
+	}
 }
