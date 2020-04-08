@@ -16,10 +16,6 @@ public class ParkingSpot {
 		return !taken;
 	}
 
-	public Boolean isTaken() {
-		return taken;
-	}
-
 	public int getParkingSpotId() {
 		return parkingSpotId;
 	}
