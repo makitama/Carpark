@@ -21,6 +21,14 @@ public class Car extends Vehicle {
 		this.height = driveInDriveOutCommandoParamsFactory.getHeight();
 	}
 
+	public String getBrand() {
+		return brand;
+	}
+
+	public double getHeight() {
+		return height;
+	}
+
 	@Override
 	public String toString() {
 		return "Car -> " + "brand: '" + brand + "', height: '" + height + "', " + super.toString();

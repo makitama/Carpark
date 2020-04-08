@@ -18,6 +18,10 @@ public class Motorcycle extends Vehicle {
 		this.mtype = driveInDriveOutCommandoParamsFactory.getMtype();
 	}
 
+	public String getMtype() {
+		return mtype;
+	}
+
 	@Override
 	public String toString() {
 		return "Motorcycle -> " + "type: '" + mtype + "'" + super.toString();

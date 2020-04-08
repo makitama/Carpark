@@ -5,8 +5,6 @@ public abstract class Vehicle {
 	private String color = "";
 	private String licenseplate = "";
 
-
-
 	public String getColor() {
 		return color;
 	}
