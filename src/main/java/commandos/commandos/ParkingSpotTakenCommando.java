@@ -1,7 +1,7 @@
 package commandos.commandos;
 
 import commandos.Commando;
-import commandos.commandos.Factories.ParkingSpotCommandosParamsFactory;
+import commandos.commandos.Factories.ParkingSpotCommandoParamsFactory;
 import services.ParkingService;
 
 import java.util.Map;
@@ -16,10 +16,10 @@ public class ParkingSpotTakenCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
-		ParkingSpotCommandosParamsFactory parkingSpotCommandosParamsFactory = new ParkingSpotCommandosParamsFactory(parameters);
-		if (parkingService.takeParkingSpot(parkingSpotCommandosParamsFactory.getLicense_plate(), parkingSpotCommandosParamsFactory.getParking_spot_id()
-			  , parkingSpotCommandosParamsFactory.getFloorNr())) {
-			DATABASE_SERVICE.parkInDatabase(parkingSpotCommandosParamsFactory);
+		ParkingSpotCommandoParamsFactory parkingSpotCommandoParamsFactory = new ParkingSpotCommandoParamsFactory(parameters);
+		if (parkingService.takeParkingSpot(parkingSpotCommandoParamsFactory.getLicense_plate(), parkingSpotCommandoParamsFactory.getParking_spot_id()
+			  , parkingSpotCommandoParamsFactory.getFloorNr())) {
+			DATABASE_SERVICE.parkInDatabase(parkingSpotCommandoParamsFactory);
 			PRINT_TO_CONSOLE_SERVICE.printSuccessMessage(PRINT_TO_CONSOLE_SERVICE.getActualClassName());
 
 		}
