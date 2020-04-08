@@ -2,7 +2,6 @@ package commandos.commandos;
 
 import commandos.Commando;
 import services.ParkingSpotService;
-import services.PrintService;
 
 import java.util.Map;
 
@@ -16,7 +15,7 @@ public class GetParkingSpotSuggestionCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
-		new PrintService("Vorgeschlagener Parkplatz lautet: " + parkingSpotService.getParkingSpotSuggestion(parameters.get("TYPE"),
+		PRINT_TO_CONSOLE_SERVICE.print("Vorgeschlagener Parkplatz lautet: " + parkingSpotService.getParkingSpotSuggestion(parameters.get("TYPE"),
 			  parameters.get("STRATEGY")));
 	}
 

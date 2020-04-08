@@ -1,7 +1,6 @@
 package commandos.commandos;
 
 import commandos.Commando;
-import services.PrintService;
 
 import java.util.Map;
 
@@ -9,7 +8,7 @@ public class ExitCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
-		new PrintService("Anwendung wird beendet");
+		PRINT_TO_CONSOLE_SERVICE.print("Anwendung wird beendet");
 		System.exit(0);
 	}
 

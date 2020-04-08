@@ -2,7 +2,6 @@ package commandos.commandos;
 
 
 import commandos.Commando;
-import services.PrintService;
 
 import java.util.Map;
 
@@ -16,10 +15,9 @@ public class HelpCommando implements Commando {
 
 	@Override
 	public void execute(Map<String, String> parameters) {
-		PrintService printService = new PrintService();
-		printService.printFormattedDescription("Commando", "Beschreibung", "Parameter");
+		PRINT_TO_CONSOLE_SERVICE.printFormattedDescription("Commando", "Beschreibung", "Parameter");
 		commandoMap.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach((Key) -> {
-			printService.printFormattedDescription(Key.getKey(), Key.getValue().getDescription(), Key.getValue().getParameterList());
+			PRINT_TO_CONSOLE_SERVICE.printFormattedDescription(Key.getKey(), Key.getValue().getDescription(), Key.getValue().getParameterList());
 		});
 	}
 
