@@ -1,6 +1,7 @@
 package commandos;
 
 import exceptions.NoParkingSpotOfVehicleFoundException;
+import exceptions.NoVehiclesInCarparkException;
 import exceptions.VehicleInFalseStateException;
 import exceptions.VehicleNotInsideCarparkException;
 import services.Output.DatabaseService;
@@ -15,7 +16,7 @@ public interface Commando {
 	PrintToFileService PRINT_TO_FILE_SERVICE = new PrintToFileService();
 	DatabaseService DATABASE_SERVICE = new DatabaseService();
 
-	void execute(Map<String, String> parameters) throws VehicleNotInsideCarparkException, VehicleInFalseStateException, NoParkingSpotOfVehicleFoundException;
+	void execute(Map<String, String> parameters) throws VehicleNotInsideCarparkException, VehicleInFalseStateException, NoParkingSpotOfVehicleFoundException, NoVehiclesInCarparkException;
 
 	String getDescription();
 

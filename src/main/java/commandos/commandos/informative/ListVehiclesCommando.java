@@ -4,6 +4,7 @@ import carpark.Carpark;
 import commandos.Commando;
 import commandos.commandos.Factories.ListCommandoParamsFactory;
 import exceptions.NoParkingSpotOfVehicleFoundException;
+import exceptions.NoVehiclesInCarparkException;
 import services.CarparkService;
 import vehicles.Vehicle;
 
@@ -21,8 +22,11 @@ public class ListVehiclesCommando implements Commando {
 	}
 
 	@Override
-	public void execute(Map<String, String> parameters) throws NoParkingSpotOfVehicleFoundException {
+	public void execute(Map<String, String> parameters) throws NoParkingSpotOfVehicleFoundException, NoVehiclesInCarparkException {
 		ListCommandoParamsFactory paramsFactory = new ListCommandoParamsFactory(parameters);
+		if (carpark.getAllVehiclesWithoutParkingSpots().isEmpty()) {
+			throw new NoVehiclesInCarparkException();
+		}
 		if (paramsFactory.isEmpty()) {
 			for (Vehicle vehicle : carpark.getAllVehiclesWithoutParkingSpots()) {
 				PRINT_TO_CONSOLE_SERVICE.print(vehicle.toString() + carparkService.parkingSpotOfVehicleIfVehicleIsParked(vehicle.getLicenseplate()));
