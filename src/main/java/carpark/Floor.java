@@ -22,6 +22,10 @@ public class Floor {
 		}
 	}
 
+	public List<ParkingSpot> getParkingSpots() {
+		return parkingSpots;
+	}
+
 	public List<ParkingSpot> getFreeParkingSpots(String type) {
 		List<ParkingSpot> freeSpots = new ArrayList<>();
 		for (ParkingSpot parkingSpot : parkingSpots) {
